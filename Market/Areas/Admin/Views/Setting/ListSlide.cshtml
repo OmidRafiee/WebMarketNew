@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebMarket.ViewModel.Admin.Setting.SlideShowDataEntry>
+
+@{
+    ViewBag.Title = "لیست تصاویر اسلاید شو";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    
+ }
+@Html.AntiForgeryToken()
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                عنوان
+            </th>
+            <th class="text-center">
+                تصویر
+            </th>
+            <th>
+                متن تصویر
+            </th>
+            <th>
+                آدرس
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach ( var item in Model )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor( modelItem => item.BigTitle )
+                </td>
+                <td class="text-center">
+                    @*<img src="@item.Image" class="img-circle" alt="@item.SmallTitle" width="60" height="60">*@
+                    @Html.ImageFor(modelItem => item.Image, new { width = "60", height = "60" }, "notfound.jpg", "Files", "SlideShowImages")
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor( modelItem => item.SmallTitle )
+                </td>
+                <td>
+                    @Html.DisplayFor( modelItem => item.Url )
+                </td>
+                <td class="text-left">
+                    @Html.ActionLink("ویرایش", MVC.Admin.Setting.EditSlide(item.Id),new { @class = "btn btn-success btn-sm" } )
+                    @Html.ActionLink("حذف", MVC.Admin.Setting.DeleteSlide(item.Id), new { @class = "btn btn-danger btn-sm",onclick="return confirm('آیا مطمئن هستید؟')" })
+                    @Html.ActionLink("جزئیات", MVC.Admin.Setting.DetailsSlide(item.Id), new { @class = "btn btn-sm btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section Script{
+    <script>
+       
+    </script>
+}

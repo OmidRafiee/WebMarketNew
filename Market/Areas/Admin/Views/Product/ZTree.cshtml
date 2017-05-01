@@ -1,0 +1,73 @@
+﻿@{
+       //Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*@section Styles{
+    <link href="~/Content/Ztree/demo.css" rel="stylesheet" />
+}
+
+@section Script{
+   
+}*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ZTREE DEMO - Simple Data</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="~/Content/Ztree/demo.css" rel="stylesheet" />
+    <link href="~/Content/Ztree/metroStyle.css" rel="stylesheet" />
+
+    <script src="~/Scripts/Ztree/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/Ztree/jquery.ztree.core.min.js"></script>
+    <script src="~/Scripts/Ztree/jquery.ztree.excheck.js"></script>
+    <script src="~/Scripts/Ztree/jquery.ztree.exedit.js"></script>
+    <script type="text/javascript">
+        <!--
+        alert("0");
+        var setting = {
+            async: {
+                enable: true,
+                url: "~/Admin/Group/Create",
+                autoParam: ["id", "name=n", "level=lv"],
+                otherParam: { "otherParam": "zTreeAsyncTest" },
+                dataFilter: filter
+            }
+        };
+        alert("1");
+        function filter(treeId, parentNode, childNodes) {
+            if (!childNodes) return null;
+            for (var i = 0, l = childNodes.length; i < l; i++) {
+                childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+            }
+            return childNodes;
+        }
+
+        $(document).ready(function () {
+            $.fn.zTree.init($("#treeDemo"), setting);
+        });
+        //-->
+    </script>
+</head>
+
+<body>
+    <h1>Metro Style</h1>
+    <h6>[ File Path: super/metro.html ]</h6>
+    <div class="content_wrap">
+        <div class="zTreeDemoBackground left">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="right">
+            <ul class="info">
+                <li class="title">
+                    <h2>1, Explanation of Style Files</h2>
+                    <ul class="list">
+                        <li class="highlight_red">Please use style and image files of 'css/metroStyle'</li>
+                        <li>Thanked rqx110 for this Demo. For reference only.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

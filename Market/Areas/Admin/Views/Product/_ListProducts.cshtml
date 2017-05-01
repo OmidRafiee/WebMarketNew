@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebMarket.ViewModel.Admin.Product.ProductsViewModel> 
+
+<div class="control-group">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayName("تصویر محصول")
+            </th>
+            <th>
+                @Html.DisplayName("نام محصول")
+            </th>
+            <th>
+                @Html.DisplayName("گروه محصول")
+            </th>
+
+            <th>
+                @Html.DisplayName("قیمت محصول")
+            </th>
+
+            <th>
+                @Html.DisplayName("عملیات")
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @* <img src="@Url.Content( "~/Files/UploadImages/" + item.Image )" width="80"/>*@
+                    @Html.ImageFor(modelItem => item.Image, new { width = "55" }, "notfound.jpg", "Files", "UploadImages")
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+
+                @*<td>
+                    @Html.ActionLink("ویرایش", "EditProduct", new { id = item.Id }) |
+                    @Html.ActionLink("حذف", "DeleteProduct", new { id = item.Id }, new { onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+                </td>*@
+            </tr>
+
+        }
+    </table>
+
+</div>
+

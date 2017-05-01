@@ -1,0 +1,62 @@
+﻿@model List<WebMarket.ViewModel.User.ShoppingCart.BasketViewModel>
+
+@{
+    int total = 0;
+}
+
+@if (Model.Count != 0)
+{
+
+    foreach (var item in Model)
+    {
+        //var price = (item.Product.Price - item.Product.OffPrice);
+        <div class="item-in-cart clearfix">
+            <div class="image">
+                @Html.ImageFor(modelItem => item.Product.Image,
+                                                       new { width = "100", height = "100", alt = "cart item" },
+                                                      "notfound.jpg",
+                                                     "Files",
+                                                  "ProductImages")
+            </div>
+            <div class="desc">
+                <strong><a href=@Url.Action(MVC.Product.ShowProduct(@item.Product.Url)) >@item.Product.Name</a></strong>
+                <span class="light-clr qty">
+                    تعداد : @item.Count
+                    &nbsp;
+                    <a href="#" class="icon-remove-sign" title="حذف از سبد خرید" productid="@item.Product.Id"></a>
+                </span>
+            </div>
+            @{
+        var sum = (item.Product.Price - item.Product.OffPrice) * item.Count;
+        total = sum + total;
+            }
+            <div class="price">
+                <strong>@sum</strong>
+            </div>
+        </div>
+
+
+
+
+    }
+    <div class="summary">
+        <br />
+        <div class="row-fluid">
+            <div class="span6 align-right size-16">@total</div>
+            <div class="span6">جمع کل :</div>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="proceed">
+        <a href="~/Home/Basket" class="btn btn-danger pull-right bold higher">تصویه حساب <i class="icon-shopping-cart"></i></a>
+    </div>
+
+}
+else
+{
+    <div class="item-in-cart clearfix">
+        سبد خرید خالی است
+    </div>
+}

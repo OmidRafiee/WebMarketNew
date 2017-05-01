@@ -1,0 +1,117 @@
+﻿@model WebMarket.ViewModel.User.User.UserDataEntry
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Url{
+
+    <a href="/Home/Index">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="/User/Add">ثبت نام</a>
+}
+
+
+@using (Ajax.BeginForm(MVC.User.Add(), new AjaxOptions { HttpMethod = "Post", Url = MVC.User.ActionNames.Add }))
+{
+    @Html.AntiForgeryToken()
+    //Html.EnableClientValidation(false);
+    <h2 class="title-area">ثبت نام </h2>
+    <div class="control-group">
+        <p>
+            اگر شما ثبت نام کرده اید برای ورود به صفحه <a href="~/Account/Login" style="color:green"> ورود کاربران </a>بروید.
+        </p>
+        <hr />
+    </div>
+    <div class="control-group">
+        <h3>اطلاعات شخصی</h3>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="control-group">
+        @Html.LabelFor(model => model.Name, new { @class = "label" })
+        @*<div class="push-down-20">*@
+        @Html.EditorFor(p => p.Name, new { htmlAttributes = new { @required = "" } })
+        @Html.ValidationMessageFor(p => p.Name)
+        @*</div>*@
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Family, new { @class = "label" })
+        @Html.EditorFor(p => p.Family, new { htmlAttributes = new { @required = "" } })
+        @Html.ValidationMessageFor(p => p.Family)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.UserName, new { @class = "label" })
+        @Html.EditorFor(p => p.UserName, new { htmlAttributes = new { @required = ""} })
+        @Html.ValidationMessageFor(p => p.UserName)
+
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.Password, new { @class = "label" })
+        @Html.EditorFor(p => p.Password, new { htmlAttributes = new { @required = "" } })
+        @Html.ValidationMessageFor(p => p.Password)
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "label" })
+        @Html.EditorFor(p => p.ConfirmPassword, new { htmlAttributes = new { @required = "" } })
+        @Html.ValidationMessageFor(p => p.ConfirmPassword)
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.Email, new { @class = "label" })
+        @Html.EditorFor(p => p.Email, new { htmlAttributes = new { @required = "", placeholder = "exampel@mail.com" } })
+        @Html.ValidationMessageFor(p => p.Email)
+
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.BirthDate, new { @class = "label" })
+        @Html.EditorFor(p => p.BirthDate, new { htmlAttributes = new { @required = "" } })
+        @Html.ValidationMessageFor(p => p.BirthDate)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.PhoneNumber, new { @class = "label" })
+        @Html.EditorFor(p => p.PhoneNumber)
+        @Html.ValidationMessageFor(p => p.PhoneNumber)
+
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Gender, new { @class = "label" })
+        <select id="Gender" name="Gender" style="width:231px">
+            <option value="true">مرد</option>
+            <option value="false">زن</option>
+        </select>
+
+    </div>
+    <br />
+    <div style=" margin-left: 620px; float: left;">
+        <img alt="Captcha" id="imgcpatcha" src="@Url.Action(MVC.Captcha.ActionNames.CaptchaImage,MVC.Captcha.Name)" style="" />
+        </div>
+    @Html.LabelFor(model => model.Captcha, new { @class = "label" })
+        <div class="controls">
+            @Html.EditorFor(p => p.Captcha, new { htmlAttributes = new { @required = "", @style = "width:60px;" } })
+            <input type="button" id="refresh" style="float:left;" />
+    @*<img class="image-button reload-button" src="/static/8YgLcwys1SgZfGk2nZC0GD8OEeYOVwgkY8RWLSlyY36.png" onclick="reloadCaptcha('captcha');">
+        @*<a href=#refresh><span class="icon-refresh"></span></a>*@
+
+    </div>
+
+
+        <div class="control-group">
+        <div class="form">
+            <button class="btn btn-success btn-large push-down-10" style="margin-right: 110px;width: 230px;height: 40px;">ثبت نام</button>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+
+            jQuery('#refresh').on('click', function () {
+                var random = new Date().getTime();
+                jQuery("#imgcpatcha").attr("src", "/Captcha/CaptchaImage?" + random);
+            });
+        });
+</script>
+}

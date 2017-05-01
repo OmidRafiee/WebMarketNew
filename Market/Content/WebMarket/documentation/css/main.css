@@ -1,0 +1,49 @@
+/* ========== */
+/* = Docs styles = */
+/* ========== */
+
+
+
+body {
+    padding-top: 80px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ========== */
+/* = Navbar = */
+/* ========== */
+@media (min-width: 768px) {
+    .navbar-collapse.collapse {
+        display: block;
+    }
+}
+.navbar {
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+/* ========== */
+/* = Elements = */
+/* ========== */
+.page-header {
+    padding-top: 50px;
+}
+.jumbotron h1 {
+    font-size: 48px;
+}
+
+
+footer {
+    margin-bottom: 150px !important;
+    margin-top: 150px !important;
+}
+
+.thumbnail {
+    margin-bottom: 20px;
+}
+.thumbnail h3 {
+    text-align: center;
+}

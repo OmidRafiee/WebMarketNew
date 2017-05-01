@@ -1,0 +1,152 @@
+﻿@model WebMarket.ViewModel.Admin.Group.GroupDataEntriy
+
+
+@{
+    ViewBag.Title = "مدیریت گروه ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<div class="content_wrap">
+        <div class="zTreeDemoBackground right">
+            <ul id="treeDemo" class="ztree" style="direction:ltr"></ul>
+        </div>
+
+    </div>*@
+
+<div >
+    <div id="divListGroup" style="float:left">
+        <ul id="treeDemo" class="ztree" style="direction:ltr"></ul>
+    </div>
+</div>
+
+@*@using (Ajax.BeginForm(MVC.Admin.Group.Create(), new AjaxOptions { HttpMethod = "Post", Url = MVC.Admin.Group.ActionNames.Create }))*@
+@using (Html.BeginForm(MVC.Admin.Group.Create(), FormMethod.Post, new { id = "groupForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="position:absolute">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control ", @id = "txt-Name" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-2">
+                <input type="submit" value="ثبت مورد" class="btn  btn-success" id="btnAdd" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Styles{
+    @*<link href="@Url.Content( "~/Content/Ztree/demo.css" )" rel="stylesheet" />*@
+    <link href="@Url.Content("~/Content/Ztree/metroStyle.css")" rel="stylesheet" />
+
+}
+
+@section Script{
+    <script src="@Url.Content( "~/Scripts/Ztree/jquery.ztree.all.min.js" )"></script>
+
+    <script type="text/javascript">
+
+        <!--
+        var setting = {
+            async: {
+                enable: true,
+                url: '@Url.Action( MVC.Admin.Group.GetJsonGroup () )',
+                autoParam: ["Id=id", "Name=name", "ParentId=level"],
+                dataType: 'json',
+                dataFilter: filter
+            },
+            data: {
+                key: {
+                    name: "Name"
+                },
+                simpleData: {
+                    enable: true,
+                    idKey: "Id",
+                    pIdKey: "ParentId",
+                    rootPId: -1
+                }
+            },
+            view: {
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            edit: {
+                enable: true
+            }
+
+        };
+
+        function filter(treeId, parentNode, childNodes) {
+            return childNodes != null ? childNodes : void 0;
+        }
+
+        var newCount = 1;
+
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_" + treeNode.tId);
+            if (btn)
+                btn.bind("click", function() {
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    zTree.addNodes(treeNode, { id: (100 + newCount), pId: treeNode.id, name: "new node" + (newCount++) });
+                    return false;
+                });
+        };
+
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_" + treeNode.tId).unbind().remove();
+        };
+
+
+        $(document).ready(function() {
+            $.fn.zTree.init($("#treeDemo"), setting);
+
+            $("#btnAdd").click(function(e) {
+                e.preventDefault();
+                if ($("#groupForm").valid()) {
+                    $.ajax({
+                        url: '@Url.Action( MVC.Admin.Group.Create())',
+                        //serialize maghadir vorodi ro b reshte tabdil mikonad
+                        data: $("#groupForm").serialize(),
+                        type: "Post",
+                        dataType: "Json",
+                        //result etelatei ke az server daryaft kardim
+                        success: function(result) {
+                            if (result.Success) {
+                                $("#divListGroup").html(result.Html);
+                            }
+                            eval(result.Script);
+                        },
+
+                        error: function() { alert("error"); }
+                    });
+                }
+            });
+        });
+        //-->
+
+
+        $(function() {
+
+        });
+
+
+    </script>
+}
+
+

@@ -1,0 +1,62 @@
+﻿@model WebMarket.ViewModel.Admin.User.DetailsUserViewModel
+
+@{
+    ViewBag.Title = "حذف کاربر";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>آیا واقعا می خواهید کاربر مورد نظر را حذف کنید؟</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            نام
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            نام خانوادگی
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Family)
+        </dd>
+
+        <dt>
+            نقش کاربر
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+        <dt>
+            شماره همراه
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            ایمیل
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("یرگشت به لیست", MVC.Admin.User.ActionNames.Index)
+        </div>
+    }
+</div>
+

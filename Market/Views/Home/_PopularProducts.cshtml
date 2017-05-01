@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebMarket.ViewModel.Admin.Product.ProductSectionViewModel> 
+<div class="most-popular blocks-spacer">
+    <div class="container">
+        <!--  ==========  -->
+        <!--  = Title =  -->
+        <!--  ==========  -->
+        <div class="row">
+            <div class="span12">
+                <div class="main-titles lined">
+                    <h2 class="title"><span class="light">محبوبترین</span>محصولات فروشگاه</h2>
+                </div>
+            </div>
+        </div> <!-- /title -->
+        <div class="row popup-products">
+            <!--  ==========  -->
+            <!--  = Product =  -->
+            <!-- ========== -->
+            @foreach (var item in Model)
+            {
+                <div class="span3">
+                    <div class="product">
+                        <div class="product-img">
+                            <div class="picture">
+                                @Html.ImageFor(modelItem => item.Image,
+                                    new { width = "540", height = "412" },
+                         "notfound.jpg",
+                                    "Files",
+                                    "ProductImages")
+                                @*<img src="images/dummy/most-popular-products/popular-1.jpg" alt="" width="540" height="412"/>*@
+                                <div class="img-overlay">
+                                    <a href="@Url.Action(item.Url)" class="btn more btn-primary">توضیحات بیشتر</a>
+                                    <a href="#" class="btn buy btn-danger" product="@item.Id">اضافه به سبد خرید</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-titles no-margin">
+                            @if (item.OffPrice != 0)
+                            {
+                                <div class="product-price"><span class="product-price-last">@item.Price</span></div>
+                                <br />
+                                var newPrice = (item.Price - item.OffPrice);
+                                <span class="product-price-new">@newPrice</span>
+                                @*<div class="product-badge">
+                                        <img src="~/Content/shop/images/badge-sale.png">
+                                    </div>*@
+                            }
+                            else
+                            {
+                                <br />
+                                <span class="product-price"> @item.Price</span>
+                            }
+                        </div>
+                        <p class="desc">@item.Description</p>
+                        <p class="center-align stars">
+                            <span class="icon-star stars-clr"></span>
+                            <span class="icon-star stars-clr"></span>
+                            <span class="icon-star"></span>
+                            <span class="icon-star"></span>
+                            <span class="icon-star"></span>
+
+                        </p>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+</div>
+
+
+
+
+

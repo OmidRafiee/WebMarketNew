@@ -1,0 +1,144 @@
+﻿@model WebMarket.ViewModel.Admin.Product.ProductDataEntriy
+@using WebMarket.Utilities;
+
+
+@{
+    ViewBag.Title = "افزودن محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*@section Url{
+        <a href="/Home/Index">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="/Admin/AddProduct">افزودن محصول</a>
+    }*@
+
+
+@using (Html.BeginForm(MVC.Admin.Product.Create(), FormMethod.Post, new { enctype = "multipart/form-data", id = "formProduct" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.GroupId, new { @class = "text" })
+        <div class="control-group">
+            @Html.Partial(MVC.Admin.Group.Views._ListGroup,
+                           @Model.Groups,
+                           new ViewDataDictionary { { "id", "GroupId" }, { "name", "GroupId" } })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Name)
+        <div class="controls">
+            @Html.EditorFor(model => model.Name,
+                             new { htmlAttributes = new { @required = "", style = "width: 240px;" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="group">
+        @Html.LabelFor(model => model.Price)
+        <div class="controls">
+            @Html.EditorFor(model => model.Price, new { @required = "", style = "width:85%; height:100px" })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="group">
+        @Html.LabelFor(model => model.OffPrice)
+        <div class="control-group">
+            @Html.EditorFor(model => model.OffPrice, new { @required = "", style = "width: 240px;" })
+            @Html.ValidationMessageFor(model => model.OffPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.Url)
+        <div class="control-group">
+            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @required = "", style = "width: 240px;" } })
+            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Summery)
+        <div class="control-group">
+            @Html.TextAreaFor(model => model.Summery, new { htmlAttributes = new { @class = "" } })
+            @Html.ValidationMessageFor(model => model.Summery, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.KeyWord)
+        <div class="control-group">
+            @Html.EditorFor(model => model.KeyWord, new { @style = "width:85%" })
+            @Html.ValidationMessageFor(model => model.KeyWord)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Description)
+        <div class="control-group">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "", style = "width:85%;height: 35px;" } })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Tag)
+        <div class="control-group">
+            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "" } })
+            @Html.ValidationMessageFor(model => model.Tag)
+        </div>
+    </div>
+
+
+    @Html.LabelFor(model => model.Enable)
+    <div class="control-group">
+        <div class="box">
+            @Html.EditorFor(model => model.Enable)
+            @Html.ValidationMessageFor(model => model.Enable)
+        </div>
+    </div>
+
+
+    @Html.LabelFor(model => model.Image)
+    <div class="control-group">
+        <div class="col-md-10">
+            <input type="file" class="filestyle" data-icon="true" name="uploadImage" id="uploadImage" accept=".jpg, .jpeg, .gif, .png" placeholder="اندازه تصویر بهتر است  377* 1400 باشد">
+        </div>
+    </div>
+   
+        <div class="control-group">
+            <button class="btn btn-success btn-large push-down-10" style="width:230px;height:40px;margin-top: 20px;">افزودن</button>
+        </div>
+}
+@*</div>*@
+
+@section Styles{
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+@section Script{
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content( "~/Scripts/AutoNumeric/jquery-price.js")"></script>
+    <script src="@Url.Content( "~/Scripts/TagsInput/bootstrap-tagsinput.min.js" )"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-filestyle.min.js" )"></script>
+
+    @Html.CKEditorHeaderScripts()
+    <script>
+        $(function () {
+            $("#Price").price();
+            $("#Summery").ckeditor();
+            $("#KeyWord").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
+            }).tagsinput();
+            $("#Tag").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
+            }).tagsinput();
+        });
+
+        $("#formProduct").ajaxForm();
+    </script>
+}

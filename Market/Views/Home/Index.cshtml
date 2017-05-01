@@ -1,0 +1,236 @@
+﻿@model WebMarket.ViewModel.User.Product.HomeIndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<!-- = Slider Revolution = -->
+
+@{Html.RenderAction ( MVC.Home.SlideShow () ); }
+
+<!-- /slider revolution -->
+<!--  = Main container =  -->
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="push-up over-slider blocks-spacer">
+
+                <!--  ==========  -->
+                <!--  = Three Banners =  -->
+                <!--  ==========  -->
+                <div class="row">
+                    <div class="span4">
+                        <a href="#" class="btn btn-block colored banner">
+                            <span class="title"><span class="light">فروش</span> تابستانی</span>
+                            <em>تا 60% تخفیف روی کفش ها</em>
+                        </a>
+                    </div>
+                    <div class="span4">
+                        <a href="#" class="btn btn-block banner">
+                            <span class="title"><span class="light">ارسال</span> رایگان</span>
+                            <em>برای خرید های بیش از 69000 تومان</em>
+                        </a>
+                    </div>
+                    <div class="span4">
+                        <a href="#" class="btn btn-block colored banner">
+                            <span class="title"><span class="light">محصولات</span> جدید</span>
+                            <em>از محصولات جدید دیدن کنید.</em>
+                        </a>
+                    </div>
+                </div> <!-- /three banners -->
+            </div>
+        </div>
+    </div>
+
+    <!--  ==========  -->
+    <!--  = Featured Items =  -->
+    <!-- ========== -->
+
+    @{Html.RenderAction(MVC.Home.MoreSellProducts()); }
+
+
+</div>
+
+<!-- /container -->
+<!--  = New Products =  -->
+
+
+@{Html.RenderAction(MVC.Home.NewProducts()); }
+
+
+ <!-- /new products -->
+<!--  = Most Popular products =  -->
+
+@{Html.RenderAction(MVC.Home.PopularProducts()); }
+
+
+<!-- /most popular -->
+<!--  ==========  -->
+<!--  = Lastest News =  -->
+<!--  ==========  -->
+<div class="darker-stripe blocks-spacer more-space latest-news with-shadows">
+    <div class="container">
+
+        <!--  ==========  -->
+        <!--  = Title =  -->
+        <!--  ==========  -->
+        <div class="row">
+            <div class="span12">
+                <div class="main-titles center-align">
+                    <h2 class="title">
+                        <span class="clickable icon-chevron-right" id="tweetsRight"></span> &nbsp;&nbsp;&nbsp;
+                        <span class="light">آخرین</span> خبر ها &nbsp;&nbsp;&nbsp;
+                        <span class="clickable icon-chevron-left" id="tweetsLeft"></span>
+                    </h2>
+                </div>
+            </div>
+        </div> <!-- /title -->
+        <!--  ==========  -->
+        <!--  = News content =  -->
+        <!--  ==========  -->
+        <div class="row">
+            <div class="span12">
+                <div class="carouFredSel" data-nav="tweets" data-autoplay="false">
+
+
+                    <!--  ==========  -->
+                    <!--  = Slide =  -->
+                    <!--  ==========  -->
+                    <div class="slide">
+                        <div class="row">
+                            <div class="span6">
+                                <div class="news-item">
+                                    <div class="published">12 بهمن 1392</div>
+                                    <h6><a href="#">عنوان خبر شما</a></h6>
+                                    <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="news-item">
+                                    <div class="published">15 بهمن 1392</div>
+                                    <h6><a href="#">یک خبر جالب دیگر</a></h6>
+                                    <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /slide -->
+                    <!--  ==========  -->
+                    <!--  = Slide =  -->
+                    <!--  ==========  -->
+                    <div class="slide">
+                        <div class="row">
+                            <div class="span6">
+                                <div class="news-item">
+                                    <div class="published">12 بهمن 1392</div>
+                                    <h6><a href="#">عنوان خبر شما</a></h6>
+                                    <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="news-item">
+                                    <div class="published">15 بهمن 1392</div>
+                                    <h6><a href="#">یک خبر جالب دیگر</a></h6>
+                                    <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /slide -->
+
+                </div>
+            </div>
+        </div> <!-- /news content -->
+    </div>
+</div> <!-- /latest news -->
+<!--  ==========  -->
+<!--  = Brands Carousel =  -->
+<!--  ==========  -->
+<div class="container blocks-spacer-last">
+
+    <!--  ==========  -->
+    <!--  = Title =  -->
+    <!--  ==========  -->
+    <div class="row">
+        <div class="span12">
+            <div class="main-titles lined">
+                <h2 class="title"><span class="light">برند های</span> ما</h2>
+                <div class="arrows">
+                    <a href="#" class="icon-chevron-right" id="brandsRight"></a>
+                    <a href="#" class="icon-chevron-left" id="brandsLeft"></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /title -->
+    <!--  ==========  -->
+    <!--  = Logos =  -->
+    <!--  ==========  -->
+    <div class="row">
+        <div class="span12">
+            <div class="brands carouFredSel" data-nav="brands" data-autoplay="true">
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_01.jpg")" alt="" width="203" height="104" />
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_02.jpg")" alt="" width="203" height="104" />
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_03.jpg")" alt="" width="203" height="104" />
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_04.jpg")" alt="" width="203" height="104" />
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_05.jpg")" alt="" width="203" height="104" />
+                <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/dummy/brands/brands_06.jpg")" alt="" width="203" height="104" />
+            </div>
+        </div>
+    </div> <!-- /logos -->
+</div> <!-- /brands carousel -->
+<!--  ==========  -->
+<!--  = Footer =  -->
+<!-- ========== -->
+
+
+@section Scripts{
+        <script>
+    $(function () {
+        $("a.btn.buy.btn-danger").click(function (e) {
+            e.preventDefault();
+            var productId = $(this).attr("product");
+            $.ajax({
+                url: '@Url.Action(MVC.ShoppingCart.AddToCart())',
+                        data: { id: productId, count: 1 },
+                        type: "Post",
+                        dataType: "Json",
+                        success: function (result) {
+                            if (result.Success) {
+                                //$("#cartContainer").html(result.Html);
+                                //$("#warpper").load(location.href + "#warpper");//reload div
+                                //location.reload();
+                            }
+                            eval(result.Script);
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+                });
+
+                $(".icon-remove-sign").click(function (e) {
+                       e.preventDefault();
+                        var id = $(this).attr("productid");
+                        var img = $(this);
+                        $.ajax({
+                            url: '@Url.Action(MVC.ShoppingCart.RemoveCart())',
+                            data: { Id: id },
+                            type: "Post",
+                            dataType: "Json",
+                            success: function (result) {
+                                if (result.Success) {
+                                    //img.parent().parent().hide();
+                                    $("#cartContainer").html(result.Html);
+                                  // location.reload();
+                                }
+                                eval(result.Script);
+                            },
+                            error: function () {
+                                alert("خطا!");
+                            }
+                        });
+                    });
+
+                });
+        </script>
+    }

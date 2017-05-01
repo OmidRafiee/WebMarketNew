@@ -1,0 +1,148 @@
+﻿@model WebMarket.ViewModel.Admin.Product.ProductDataEntriy
+@using WebMarket.Utilities;
+
+
+@{
+    ViewBag.Title = "ویرایش محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*@section Url{
+        <a href="/Home/Index">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="/Admin/AddProduct">افزودن محصول</a>
+    }*@
+
+
+
+@* for uplod file va chon dar form ajax emkan estefade az in nist majborim be sorat html beferestim va az dll ajaxForm jodagane estedafe konim *@
+@*new {enctype="multipart/form-data"})*@
+@using (Html.BeginForm(MVC.Admin.Product.Edit(), FormMethod.Post, new { enctype = "multipart/form-data", id = "formProduct" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.GroupId, new { @class = "label" })
+        <div class="control-group">
+            @Html.Partial(MVC.Admin.Group.Views._ListGroup,
+                           @Model.Groups,
+                     new ViewDataDictionary { { "id", "Product_GroupId" }, { "name", "Product.GroupId" }, { "selectedId", Model.Groups} })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "label" })
+        <div class="controls">
+            @Html.EditorFor(model => model.Name,
+                             new { htmlAttributes = new { @required = "", style = "width: 240px;" } })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "label" })
+        <div class="controls">
+            @Html.EditorFor(model => model.Price, new { @required = "", style = "width:85%; height:100px" })
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+    </div>
+    <div class="group">
+        @Html.LabelFor(model => model.OffPrice, htmlAttributes: new { @class = "label" })
+        <div class="control-group">
+            @Html.EditorFor(model => model.OffPrice, new { @required = "", style = "width: 240px;" })
+            @Html.ValidationMessageFor(model => model.OffPrice)
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "label" })
+        <div class="control-group">
+            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @required = "", style = "width: 240px;" } })
+            @Html.ValidationMessageFor(model => model.Url)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Summery)
+        <div class="control-group">
+            @Html.TextAreaFor(model => model.Summery, new { htmlAttributes = new { @class = "text" } })
+            @Html.ValidationMessageFor(model => model.Summery)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.KeyWord, htmlAttributes: new { @class = "label" })
+        <div class="control-group">
+            @Html.EditorFor(model => model.KeyWord, new { @style = "width:85%" })
+            @Html.ValidationMessageFor(model => model.KeyWord)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label" })
+        <div class="control-group">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "text", style = "width:85%;height: 35px;" } })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Tag, htmlAttributes: new { @class = "label" })
+        <div class="control-group">
+            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "" } })
+            @Html.ValidationMessageFor(model => model.Tag)
+        </div>
+    </div>
+
+
+    @Html.LabelFor(model => model.Enable, htmlAttributes: new { @class = "label" })
+    <div class="control-group">
+
+        <div class="box">
+            @Html.EditorFor(model => model.Enable)
+            @Html.ValidationMessageFor(model => model.Enable)
+        </div>
+    </div>
+    <br />
+
+    @Html.LabelFor(model => model.Image,
+                    htmlAttributes: new { @class = "label" })
+    <div class="control-group">
+        @Html.Upload("uploadImage")
+        @Html.HiddenFor(model => model.Image)
+    </div>
+    <br />
+
+    <div class="control-group">
+        <button class="btn btn-success btn-large push-down-10" style="width: 230px;height: 40px;">ثبت ویرایش</button>
+    </div>
+}
+@section Styles{
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+@section Script{
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content( "~/Scripts/AutoNumeric/jquery-price.js")"></script>
+    <script src="@Url.Content( "~/Scripts/TagsInput/bootstrap-tagsinput.min.js" )"></script>
+    @Html.CKEditorHeaderScripts()
+    <script>
+        $(function () {
+            $("#Price").price();
+            $("#Summery").ckeditor();
+            $("#KeyWord").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
+            }).tagsinput();
+            $("#Tag").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
+            }).tagsinput();
+        });
+
+        $("#formProduct").ajaxForm();
+    </script>
+}

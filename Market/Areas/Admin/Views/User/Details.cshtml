@@ -1,0 +1,71 @@
+﻿@model WebMarket.ViewModel.Admin.User.DetailsUserViewModel
+@{
+    ViewBag.Title = "جزئیات کاربر"; ;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            نام
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            نام خانوادگی
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Family)
+        </dd>
+
+        <dt>
+            نقش کاربر
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+        <dt>
+            شماره همراه
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            تاریخ عضویت
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+        <dt>
+            ایمیل
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            آخرین مراجعه
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastLoginDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", MVC.Admin.User.ActionNames.Edit, MVC.Admin.User.Name, new { id = Model.Id }, new { @class = "btn  btn-success" })
+
+    @Html.ActionLink("انصراف",
+                      MVC.Admin.User.ActionNames.Index,
+                      MVC.Admin.User.Name,
+                      null,
+                      new { @class = "btn  btn-default" })
+</p>

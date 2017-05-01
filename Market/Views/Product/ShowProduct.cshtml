@@ -1,0 +1,121 @@
+﻿@model WebMarket.ViewModel.Admin.Product.ProductsViewModel
+
+@{
+    ViewBag.Title = "ShowProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Url{
+    <a href=@Url.Action(MVC.Home.Index())>صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href=#>محصولات</a><li><span class="icon-chevron-right"></span></li><a>@Model.Name</a>
+}
+<div class="row blocks-spacer">
+    <div class="span5">
+        <div class="product-preview">
+            <div class="picture">
+                @Html.ImageFor(modelItem => modelItem.Image,
+                                    new { id = "mainPreviewImg", width = "940", height = "940" },
+                                    "notFound.jpg",
+                                    "Files",
+                                             "ProductImages")
+            </div>
+        </div>
+    </div>
+    <div class="span7">
+        <div class="product-title">
+            <h1 class="name"><span class="light">@Model.Name</span></h1>
+            <div class="meta">
+                <span class="tag">@Model.Price تومان</span>
+                <span class="stock">
+                    <span class="btn btn-success">موجود</span>
+                    <span class="btn btn-danger">اتمام موجودی</span>
+                    <span class="btn btn-warning">تماس بگیرید</span>
+                </span>
+            </div>
+        </div>
+        <div class="product-description">
+            <p>لورم ایپسوم متنی است که ساختگی برای طراحی و چاپ آن مورد است. صنعت چاپ زمانی لازم بود شرایطی شما باید فکر ثبت نام و طراحی، لازمه خروج می باشد. در ضمن قاعده همفکری ها جوابگوی سئوالات زیاد شاید باشد، آنچنان که لازم بود طراحی گرافیکی خوب بود. کتابهای زیادی شرایط سخت ، دشوار و کمی در سالهای دور لازم است. هدف از این نسخه فرهنگ پس از آن و دستاوردهای خوب شاید باشد. حروفچینی لازم در شرایط فعلی لازمه تکنولوژی بود که گذشته، حال و آینده را شامل گردد. سی و پنج درصد از طراحان در قرن پانزدهم میبایست پرینتر در ستون و سطر حروف لازم است، بلکه شناخت این ابزار گاه اساسا بدون هدف بود و سئوالهای زیادی در گذشته بوجود می آید، تنها لازمه آن بود. </p>
+            <hr>
+
+            <!-- ========== -->
+            <!-- = Add to cart form = -->
+            <!-- ========== -->
+            <form class="form form-inline clearfix">
+                <div class="numbered">
+                    <input type="text" name="num" value="1" class="tiny-size">
+                    <span class="clickable add-one icon-plus-sign-alt"></span>
+                    <span class="clickable remove-one icon-minus-sign-alt"></span>
+                </div>
+                &nbsp;
+                <select name="color" class="span2">
+                    <option value="-1">انتخاب رنگ</option>
+                    <option value="blue">آبی</option>
+                    <option value="orange">نارنجی</option>
+                    <option value="black">مشکی</option>
+                </select>
+                &nbsp;
+                <select name="size" class="span2">
+                    <option value="-1">انتخاب سایز</option>
+                    <option value="XS">خیلی کوچک</option>
+                    <option value="S">کوچک</option>
+                    <option value="M">متوسط</option>
+                    <option value="L">بزرگ</option>
+                    <option value="XL">خیلی بزرگ</option>
+                    <option value="XXL">خیلی خیلی بزرگ</option>
+                </select>
+                <a href="#" id="Add" class="btn buy btn-danger pull-right" productid="@Model.Id"><i class="icon-shopping-cart"></i>اضافه به سبد خرید</a>
+                @*<button id="Add" class="btn btn-danger pull-right" productid="@Model.Id"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>*@
+            </form>
+            <hr>
+
+            <!-- ========== -->
+            <!-- = Share buttons = -->
+            <!-- ========== -->
+            <div class="share-item">
+                <div class="pull-right social-networks">
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style ">
+                        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                        <a class="addthis_button_tweet"></a>
+                        <a class="addthis_button_pinterest_pinit"></a>
+                        <a class="addthis_counter addthis_pill_style"></a>
+                    </div>
+                    @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-517459541beb3977"></script>*@
+                    <!-- AddThis Button END -->
+                </div>
+                با دوستان خود به اشتراک بگذارید :
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#Add").click(function (e) {
+                e.preventDefault();
+                var count = $(".tiny-size").val();
+                var productId = $(this).attr("productid");
+                $.ajax({
+                    url: '@Url.Action(MVC.ShoppingCart.AddToCart())',
+                    data: { id: productId, count: count },
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (result) {
+                        if (result.Success) {
+                            //$("#cartContainer").html(result.Html);
+                            //$("#warpper").load(location.href + "#warpper");//reload div
+                            location.reload();
+                        }
+                        eval(result.Script);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            });
+
+        });
+    </script>
+}

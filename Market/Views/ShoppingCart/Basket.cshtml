@@ -1,0 +1,139 @@
+﻿@model List<WebMarket.ViewModel.User.ShoppingCart.BasketViewModel>
+
+@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Url{
+
+    <a href="/Home/Index">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="/Home/Basket">سبد خرید</a>
+}
+@if (Model.Count != 0)
+{
+    using (Html.BeginForm(MVC.ShoppingCart.Basket(), FormMethod.Post, new { id = "BasketForm" }))
+    {
+        <h2 class="title-area">محصولات سبد خرید</h2>
+        @*<div class="group">
+                @Html.ActionLink("افزودن محصول جدید", "Basket", "Home", null, new { @class = "button" })
+            </div>*@
+        <div class="control-group">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayName("تصویر")
+                    </th>
+                    <th>
+                        @Html.DisplayName("نام محصول")
+                    </th>
+                    <th>
+                        @Html.DisplayName("قیمت")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("تعداد")
+                    </th>
+                    <th>
+                        @Html.DisplayName("حذف محصول")
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @* <img src="@Url.Content( "~/Files/UploadImages/" + item.Image )" width="80"/>*@
+                            @Html.ImageFor(modelItem => item.Product.Image,
+                                                     new { width = "80" },
+                                                     "No Image",
+                                                     "Files",
+                                                  "ProductImages")
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Name)
+                        </td>
+
+                        <td>
+                            @item.Product.Price.ToString()
+                        </td>
+                        <td>
+                            @*<div class="numbered">
+                                    <input type="text" name="num" value="1" class="tiny-size" id="addCart" productid=@Model.Id>
+                                    <span class="clickable add-one icon-plus-sign-alt"></span>
+                                    <span class="clickable remove-one icon-minus-sign-alt"></span>
+                                </div>*@
+                            @Html.TextBoxFor(modelItem => item.Count,
+                                                       new { @class = "text txtCountProduct", style = "width:40px;", productid = item.Product.Id })
+                        </td>
+                        <td>
+                            <img src="~/Content/WebMarket/webmarket/images/trash.png" alt="حذف محصول" style="cursor:pointer;width:20px;margin-right:20px;" class="deleteProduct" productid="@item.Product.Id" />
+
+                        </td>
+                        @*<td>
+                            </td>*@
+                    </tr>
+                }
+            </table>
+          @*  @Html.ActionLink("تایید و مرحله بعد", "Buy", null, new { @class = "btn btn-success btn-large push-down-10" })*@
+        </div>
+
+    }
+}
+else
+{
+    <div>
+        <span style="color:red;font-size:30px;">سبد خرید خالی است</span>
+        @Html.ActionLink("برگشت به صفحه اصلی", "Index")
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/AutoNumeric/jquery-price.js"></script>
+    <script>
+        $(function () {
+            $(".txtCountProduct").price();
+
+            $(".deleteProduct").click(function () {
+                var id = $(this).attr("productid");
+                var img = $(this);
+                $.ajax({
+                    url: '@Url.Action(MVC.ShoppingCart.RemoveCart())',
+                    data: { Id: id },
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (result) {
+                        if (result.Success) {
+                            img.parent().parent().hide();
+                            $("#cartContainer").html(result.Html);
+                        }
+                        eval(result.Script);
+                    },
+                    error: function () {
+                        alert("خطا!");
+                    }
+                });
+            });
+            $(".txtCountProduct").change(function () {
+                var count = $(this).val();
+                var id = $(this).attr("productid");
+                $.ajax({
+                    url: '@Url.Action(MVC.ShoppingCart.AddToCart())',
+                    data: { Id: id, Count: count },
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (result) {
+                        if (result.Success) {
+                            $("#cart").html(result.html);
+                            //$("#cart").load(href);//reload div
+                        }
+                        eval(result.Script);
+                    },
+                    error: function () {
+                        alert("خطا!");
+                    }
+                });
+            });
+        });
+    </script>
+}

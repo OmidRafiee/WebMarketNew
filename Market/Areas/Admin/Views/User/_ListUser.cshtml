@@ -1,0 +1,78 @@
+﻿@using PagedList.Mvc
+@model  WebMarket.ViewModel.Admin.User.UsersListViewModel
+
+
+@Html.AntiForgeryToken()
+<table class="table table-striped table-hover" id="userTable">
+    <thead>
+        <tr>
+            <th>نام کاربری</th>
+            <th>نام-نام خوانوادگی</th>
+            <th>شماره همراه</th>
+            <th>نقش</th>
+            <th>آخرین مراجعه</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.UsersList)
+        {
+             @*<tr class="@(user.Baned ? "warning" : "") "> *@
+           <tr class= "" >
+                <td>@user.UserName</td>
+                <td>@user.Name @user.Family</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.RoleName</td>
+                <td>@user.LastLoginDate</td>
+               <td class="text-right">
+                  
+                   @Html.ActionLink("حذف", MVC.Admin.User.ActionNames.Delete, MVC.Admin.User.Name, new { id = user.Id }, new { @class = "btn btn-danger btn-sm" })
+                   @*<span id="row-@user.Id" class="btn btn-danger btn-sm">حذف</span>*@
+                   @Html.ActionLink("ویرایش", MVC.Admin.User.ActionNames.Edit, MVC.Admin.User.Name, new { id = user.Id }, new{@class ="btn btn-sm btn-success" @*,onclick="return confirm('Are you sure?')"*@})
+                   @Html.ActionLink( "جزئیات" ,
+                                     MVC.Admin.User.ActionNames.Details ,
+                                     MVC.Admin.User.Name ,
+                                     new { id = user.Id } ,
+                                     new { @class = "btn btn-sm btn-info" } )
+               </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+@using (Ajax.BeginForm(MVC.Admin.User.ActionNames.List, MVC.Admin.User.Name, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "usersList" }, new { @class = "form-horizontal", id = "userFilterForm" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Hidden("term", Model.Term)
+            @Html.Hidden("userSearchBy", ViewBag.UserSearchBy as string)
+            <div class="col-md-4">
+                @Html.DropDownList("userOrderBy", ViewBag.UserOrderByList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownList("order", ViewBag.OrderList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("pageCount", ViewBag.CountList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3"><input type="submit" value="مرتب سازی" class="btn btn-md btn-default" /></div>
+        </div>
+    </div>
+}
+<div class="block-standart" style="direction:ltr">
+
+    @Html.PagedListPager(new PagedList.StaticPagedList<WebMarket.ViewModel.Admin.User.DetailsUserViewModel>(Model.UsersList, Model.PageNumber, Model.PageCount, Model.TotalUsers),
+pageNumber => Url.Action(MVC.Admin.User.ActionNames.List, MVC.Admin.User.Name, new
+                {
+                    term = Model.Term,
+                    pageNumber = pageNumber,
+                    pageCount = Model.PageCount,
+                    order = Model.Order,
+                    userOrderBy = Model.UserOrderBy,
+                    userSearchBy = ViewBag.UserSearchBy
+                }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { AllowCache = false, HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "usersList" }))
+</div>

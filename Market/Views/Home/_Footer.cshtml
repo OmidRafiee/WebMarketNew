@@ -1,0 +1,136 @@
+﻿@model WebMarket.ViewModel.Admin.Setting.EditSettingDataEntry
+
+<footer>
+   
+    <!-- ========== -->
+    <!-- = Middle footer = -->
+    <!-- ========== -->
+    <div class="foot-dark">
+        <div class="container">
+            <div class="row">
+                <div class="span4">
+                    <div class="main-titles lined">
+                        <h3 class="title">
+                            <span class="light">ناوبری</span> اصلی
+                        </h3>
+                    </div>
+                    <ul class="nav bold">
+                        <li><a href="#">خانه</a></li>
+                        <li><a href="#">صفحات</a></li>
+                        <li><a href="#">درباره ما</a></li>
+                        <li><a href="#">کد های میانبر</a></li>
+                        <li><a href="#">گالری</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="span4">
+                    <div class="main-titles lined">
+                        <h3 class="title">تماس با ما</h3>
+                        <ul class="nav bold">
+                          @if (Model!=null )
+                          {
+                            <li>@Model.MarketName</li>
+                            <li>@Model.AboutUs</li>
+                            <li>@Model.ContactUs</li>
+                            <li>@Model.PhoneNumber1</li>
+                            <li>@Model.PhoneNumber2</li>
+                          }
+                           
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="span4">
+                    <div class="main-titles lined">
+                        <h3 class="title">
+                            <span class="light">عضویت</span> در خبرنامه
+                        </h3>
+                    </div>
+                    <p> در خبرنامه سایت عضوشوید و از آخرین تخفیف های سایت با خبر شوید.</p>
+                    <!-- Begin MailChimp Signup Form -->
+                    <div id="mc_embed_signup">
+                        <form action="http://proteusthemes.us4.list-manage1.com/subscribe/post?u=ea0786485977f5ec8c9283d5c&amp;id=5dad3f35e9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form form-inline" target="_blank" novalidate>
+                            <div class="mc-field-group">
+                                <input type="email" value="" placeholder="آدرس ایمیلتان را وارد کنید" name="EMAIL" class="required email" id="mce-EMAIL">
+                                <input type="submit" value="ارسال" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!--End mc_embed_signup-->
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- /middle footer -->
+    <!-- ========== -->
+    <!-- = Bottom Footer = -->
+    <!-- ========== -->
+    <div class="foot-last">
+        <a href="#" id="toTheTop">
+            <span class="icon-chevron-up"></span>
+        </a>
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                </div>
+                <div class="span6">
+                    <div class="pull-right">
+                        Web Market, 1394-1395 &copy;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /bottom footer -->
+</footer> <!-- /footer -->
+<!-- ========== -->
+<!-- = Modal Windows = -->
+<!-- ========== -->
+<!-- = Login = -->
+<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    @* @Html.Partial("EditorTemplates/_Login")*@
+
+</div>
+
+<!-- = Register = -->
+<div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="registerModalLabel">
+            <span class="light">عضویت</span> در وبمارکت
+        </h3>
+    </div>
+    <div class="modal-body">
+        <form method="post" action="#">
+            <div class="control-group">
+                <label class="control-label hidden shown-ie8" for="inputUsernameRegister">نام کاربری</label>
+                <div class="controls">
+                    <input type="text" class="input-block-level" id="inputUsernameRegister" placeholder="Username">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label hidden shown-ie8" for="inputEmailRegister">ایمیل</label>
+                <div class="controls">
+                    <input type="email" class="input-block-level" id="inputEmailRegister" placeholder="Email">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label hidden shown-ie8" for="inputPasswordRegister">رمز عبور</label>
+                <div class="controls">
+                    <input type="password" class="input-block-level" id="inputPasswordRegister" placeholder="Password">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger input-block-level bold higher">
+                عضویت
+            </button>
+        </form>
+        <p class="center-align push-down-0">
+            <a data-toggle="modal" role="button" href="#loginModal" data-dismiss="modal">قبلا ثبت نام کرده اید؟</a>
+        </p>
+
+    </div>
+</div>

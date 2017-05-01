@@ -1,0 +1,72 @@
+﻿@model IEnumerable < WebMarket.ViewModel.Admin.Setting.SlideShowDataEntry > 
+
+@if (Model.Any())
+{
+    <div class="fullwidthbanner-container">
+
+        <div class="fullwidthbanner">
+            <ul>
+
+                @foreach (var item in Model)
+                {
+                    <li data-transition="premium-random" data-slotamount="3">
+
+                        <!-- Images -->
+                        @Html.ImageFor(modelItem => item.Image,
+                                    new { width = "1400", height = "377" },
+                                    "notfound.jpg",
+                                    "Files",
+                                    "SlideShowImages")
+
+                        <!-- texts -->
+                        <div class="caption lfl big_theme"
+                             data-x="120"
+                             data-y="120"
+                             data-speed="1000"
+                             data-start="500"
+                             data-easing="easeInOutBack">
+                            @Html.DisplayFor(modelItem => item.BigTitle)
+
+                        </div>
+
+                        <div class="caption lfl small_theme"
+                             data-x="120"
+                             data-y="190"
+                             data-speed="1000"
+                             data-start="700"
+                             data-easing="easeInOutBack">
+                            @Html.DisplayFor(modelItem => item.SmallTitle)
+
+                        </div>
+
+                        @*<a href="features.html" class="caption lfl btn btn-primary btn_theme"
+                               data-x="120"
+                               data-y="260"
+                               data-speed="1000"
+                               data-start="900"
+                               data-easing="easeInOutBack">
+                                تمامی امکانات قالب
+                            </a>*@
+                    </li><!-- /slide -->
+                }
+
+            </ul>
+            <div class="tp-bannertimer"></div>
+        </div>
+
+        <!-- ========== -->
+        <!-- = Nav Arrows = -->
+        <!-- ========== -->
+        <div id="sliderRevLeft">
+            <i class="icon-chevron-left"></i>
+        </div>
+        <div id="sliderRevRight">
+            <i class="icon-chevron-right"></i>
+        </div>
+    </div>
+
+}
+
+
+
+
