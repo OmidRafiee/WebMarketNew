@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WebMarket.DataLayer.Context;
 using WebMarket.DomainClasses.Entity;
+using WebMarket.DomainClasses.Enums;
 using WebMarket.ServiceLayer.Interfaces;
 using WebMarket.ViewModel.Admin.User;
+using WebMarket.ViewModel.User.Factor;
 
 namespace WebMarket.ServiceLayer.EFServices
 {
@@ -34,7 +36,8 @@ namespace WebMarket.ServiceLayer.EFServices
 
         #region Implementation of IFactorItem
 
-     
+      
+
 
         #endregion
     }

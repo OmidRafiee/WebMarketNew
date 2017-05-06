@@ -127,6 +127,7 @@
     <Compile Include="EFServices\CustomRoleStore.cs" />
     <Compile Include="EFServices\CustomUserStore.cs" />
     <Compile Include="EFServices\EmailService.cs" />
+    <Compile Include="EFServices\FactorService.cs" />
     <Compile Include="EFServices\GroupService.cs" />
     <Compile Include="EFServices\ProductService.cs" />
     <Compile Include="EFServices\SettingService.cs" />
@@ -138,8 +139,10 @@
     <Compile Include="Interfaces\IApplicationUserManager.cs" />
     <Compile Include="Interfaces\ICustomRoleStore.cs" />
     <Compile Include="Interfaces\ICustomUserStore.cs" />
+    <Compile Include="Interfaces\IFactorService.cs" />
     <Compile Include="Interfaces\IGroupService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Interfaces\IFactorItemService.cs" />
     <Compile Include="Interfaces\ISlideShowService.cs" />

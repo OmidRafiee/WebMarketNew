@@ -13,9 +13,9 @@ namespace WebMarket.ServiceLayer.EFServices
 {
     using AutoMapper.QueryableExtensions;
 
-    public class SettingService:ISettingService
+    public class SettingService : ISettingService
     {
-            #region Fields
+        #region Fields
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDbSet<Setting> _settings;
@@ -23,7 +23,7 @@ namespace WebMarket.ServiceLayer.EFServices
         #endregion
 
         #region Constructor
-        public SettingService (IUnitOfWork unitOfWork)
+        public SettingService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _settings = _unitOfWork.Set<Setting>();
@@ -32,12 +32,12 @@ namespace WebMarket.ServiceLayer.EFServices
 
         #region Implementation of ISettingService
 
-        public void Update ( EditSettingDataEntry viewModel )
+        public void Update(EditSettingDataEntry viewModel)
         {
             var setting = _settings.FirstOrDefault();
             var newSetting = Market.AutoMapperConfig.Configuration.Mapper.Map(viewModel, setting);
 
-            if (setting!=null)
+            if (setting != null)
             {
                 _settings.Add(newSetting);
                 _unitOfWork.SaveChanges();
@@ -47,19 +47,19 @@ namespace WebMarket.ServiceLayer.EFServices
                 _unitOfWork.MarkAsChanged(newSetting);
                 _unitOfWork.SaveChanges();
             }
-               
-           
+
+
         }
 
-        public EditSettingDataEntry GetOptionsForEdit ()
+        public EditSettingDataEntry GetOptionsForEdit()
         {
             return _settings.ProjectTo<EditSettingDataEntry>(Market.AutoMapperConfig.Configuration.MapperConfiguration).FirstOrDefault();
-       }
+        }
 
         public EditSettingDataEntry GetOptionsForShowOnFooter()
         {
-            var setting= _settings.AsNoTracking().ToList().FirstOrDefault();
-           
+            var setting = _settings.AsNoTracking().ToList().FirstOrDefault();
+
             var model = Market.AutoMapperConfig.Configuration.Mapper.Map<EditSettingDataEntry>(setting);
 
             return model;

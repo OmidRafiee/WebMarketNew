@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Converters\PersianDateTimeToMiladiConverter.cs" />
     <Compile Include="Converters\StringToDateTimeConverter.cs" />
+    <Compile Include="FactorProfile.cs" />
     <Compile Include="GroupProfile.cs" />
     <Compile Include="ProductProfile.cs" />
     <Compile Include="SettingProfile.cs" />

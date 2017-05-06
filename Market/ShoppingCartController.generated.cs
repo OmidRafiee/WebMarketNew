@@ -88,6 +88,7 @@ namespace Market.Controllers
             public readonly string TotalPrice = "TotalPrice";
             public readonly string RemoveCart = "RemoveCart";
             public readonly string Basket = "Basket";
+            public readonly string Buy = "Buy";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -97,6 +98,7 @@ namespace Market.Controllers
             public const string TotalPrice = "TotalPrice";
             public const string RemoveCart = "RemoveCart";
             public const string Basket = "Basket";
+            public const string Buy = "Buy";
         }
 
 
@@ -129,9 +131,11 @@ namespace Market.Controllers
             {
                 public readonly string _Basket = "_Basket";
                 public readonly string Basket = "Basket";
+                public readonly string Buy = "Buy";
             }
             public readonly string _Basket = "~/Views/ShoppingCart/_Basket.cshtml";
             public readonly string Basket = "~/Views/ShoppingCart/Basket.cshtml";
+            public readonly string Buy = "~/Views/ShoppingCart/Buy.cshtml";
         }
     }
 
@@ -184,6 +188,17 @@ namespace Market.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Basket);
             BasketOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void BuyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Buy()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Buy);
+            BuyOverride(callInfo);
             return callInfo;
         }
 

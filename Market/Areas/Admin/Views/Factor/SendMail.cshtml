@@ -1,0 +1,75 @@
+﻿@using WebMarket.Utilities
+@model string
+@{
+    ViewBag.Title = "ارسال ایمیل";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm(MVC.Admin.Factor.SendMail(), FormMethod.Post, new { enctype = "multipart/form-data", id = "formSendMail" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.Label("گیرندگان", new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBox("Recivers", Model, new { @class = "form-control" })
+            </div>
+
+        </div>
+        <div class="form-group">
+            @Html.Label("عنوان پیام", new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBox("Title", "", new { @class = "form-control" })
+                @Html.ValidationMessage("عنوان ایمیل را تعیین کنید", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="form-group">
+            @Html.Label("متن پیام", new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextArea("Text", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("فایل ضمیمه", new { @class = "control-label col-md-4", style = "padding-left: 100px;    padding-top: 25px;" })
+                <div style="padding-left:190px;padding-top:25px;" class="col-md-8">
+                    <input type="file" class="filestyle" data-icon="true" name="Attachment" id="Attachment" accept=".jpg, .jpeg, .gif, .png">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn  btn-success">ارسال ایمیل</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+@section styles{
+    <link href="@Url.Content("~/Scripts/TagsInput/bootstrap-tagsinput.css")" rel="stylesheet" />
+}
+
+@section script{
+    <script src="@Url.Content("~/Scripts/AjaxForm/jquery.form.min.js")"></script>
+    <script src="@Url.Content( "~/Scripts/TagsInput/bootstrap-tagsinput.min.js" )"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-filestyle.min.js" )"></script>
+
+    @Html.CKEditorHeaderScripts()
+    <script>
+        $(function () {
+            $("#Text").ckeditor();
+            $("#Recivers").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                }
+            }).tagsinput();
+        });
+        $("#formSendMail").ajaxForm();
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿@using PagedList.Mvc
+@{
+    ViewBag.Title = "لیست سفارشات";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles{
+    <style>
+        .greenRow, .greenRow td {
+            background-color: lightgreen;
+            color: black;
+        }
+    </style>
+}
+        <div id="factorsList">
+    @{ Html.RenderAction(MVC.Admin.Factor.ActionNames.List, MVC.Admin.Factor.Name);}
+</div>
+

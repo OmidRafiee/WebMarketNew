@@ -7,7 +7,7 @@
 
 @section Url{
 
-    <a href="/Home/Index">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="/Home/Basket">سبد خرید</a>
+    <a href="@Url.Action(MVC.Home.Index())">صفحه اصلی</a><li><span class="icon-chevron-right"></span></li><a href="@Url.Action(MVC.ShoppingCart.Basket())">سبد خرید</a>
 }
 @if (Model.Count != 0)
 {
@@ -45,9 +45,9 @@
                             @* <img src="@Url.Content( "~/Files/UploadImages/" + item.Image )" width="80"/>*@
                             @Html.ImageFor(modelItem => item.Product.Image,
                                                      new { width = "80" },
-                                                     "No Image",
+                                                  "notfound.jpg",
                                                      "Files",
-                                                  "ProductImages")
+                                               "ProductImages")
                         </td>
 
                         <td>
@@ -63,8 +63,7 @@
                                     <span class="clickable add-one icon-plus-sign-alt"></span>
                                     <span class="clickable remove-one icon-minus-sign-alt"></span>
                                 </div>*@
-                            @Html.TextBoxFor(modelItem => item.Count,
-                                                       new { @class = "text txtCountProduct", style = "width:40px;", productid = item.Product.Id })
+                            @Html.TextBoxFor(modelItem => item.Count,new { @class = "text txtCountProduct", style = "width:40px;", productid = item.Product.Id })
                         </td>
                         <td>
                             <img src="~/Content/WebMarket/webmarket/images/trash.png" alt="حذف محصول" style="cursor:pointer;width:20px;margin-right:20px;" class="deleteProduct" productid="@item.Product.Id" />
@@ -75,7 +74,7 @@
                     </tr>
                 }
             </table>
-          @*  @Html.ActionLink("تایید و مرحله بعد", "Buy", null, new { @class = "btn btn-success btn-large push-down-10" })*@
+            @Html.ActionLink("تایید و مرحله بعد", MVC.ShoppingCart.ActionNames.Buy, null, new { @class = "btn btn-success btn-large push-down-10" })
         </div>
 
     }
@@ -84,7 +83,7 @@ else
 {
     <div>
         <span style="color:red;font-size:30px;">سبد خرید خالی است</span>
-        @Html.ActionLink("برگشت به صفحه اصلی", "Index")
+        @Html.ActionLink("برگشت به صفحه اصلی", MVC.Home.Index())
     </div>
 }
 

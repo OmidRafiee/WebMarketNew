@@ -1,0 +1,102 @@
+﻿@using PagedList.Mvc
+@using WebMarket.Utilities
+@model WebMarket.ViewModel.User.Factor.FactorListViewModel
+
+
+
+@{
+    string emails = null;
+}
+
+
+@foreach (var item in Model.FactorList)
+{
+    if (!item.IsFinish)
+    {
+        emails = item.Email + "," + emails;
+    }
+
+
+
+}
+<div class="row">
+    <div class="col-lg-10">
+        @using (Ajax.BeginForm(MVC.Admin.Factor.ActionNames.List, MVC.Admin.Factor.Name, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "factorsList" }, new { @class = "form-horizontal", id = "userFilterForm" }))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        @Html.DropDownList("PaymentBy",ViewBag.PaymentListBy as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-md-3"><input type="submit" value="مرتب سازی" class="btn btn-md btn-default" /></div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<div class="block-standart" style="direction:ltr">
+    @Html.PagedListPager(new PagedList.StaticPagedList<WebMarket.ViewModel.User.Factor.FactorViewModel>(Model.FactorList, Model.PageNumber, Model.PageCount, Model.TotalFactors),
+    pageNumber => Url.Action(MVC.Admin.Factor.ActionNames.List, MVC.Admin.Factor.Name, new
+                {
+                    pageNumber = pageNumber,
+                    pageCount = Model.PageCount,
+                    PaymentBy = Model.PaymentBy
+                }), PagedList.Mvc.PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { AllowCache = false, HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "factorsList" }))
+</div>
+
+@Html.ActionLink("ارسال ایمیل به صورت گروهی", MVC.Admin.Factor.SendMail(emails), new { @class = "btn btn-warning push-down-10" })
+
+<div class="control-group" id="usersList">
+    <table class="table table-bordered table-hover" style="border:1px solid #000000">
+        <tr>
+            <td style="text-align:center;background-color:#7e9399">
+                <h1 style="color:#ffffff">@{@Html.DropDownList("PaymentBy", ViewBag.PaymentListBy as IEnumerable<SelectListItem>, new { @class = "form-control", @disabled = "disabled" })}(@Model.TotalFactors.ToString())</h1>
+            </td>
+        </tr>
+
+        @foreach (var item in Model.FactorList)
+        {
+            <tr @{ if (item.IsFinish) { <text> class="greenRow" </text>  }} style="background-color:whitesmoke">
+                <td style="border-top:1px solid #000000;">
+                    <div>
+                        <div>
+                            @Html.ActionLink("ارسال ایمیل", MVC.Admin.Factor.SendMail(item.Email), new { @class = "btn btn-warning push-down-10" })
+                        </div>
+                        <div style="width:50%;display:inline-block;">
+                            <div style="margin-left:50px;">تاریخ خرید : @item.BuyDate.ToPersianDateTime().ToString("yyyy/mm/dd" + "در ساعت" + " HH/MM/ss")</div>
+                            <div style="margin-left:50px;">کد رهگیری : @Html.DisplayFor(modelItem => item.FollowCode)</div>
+                            <div style="margin-left:50px;">قیمت : @item.Price.ToPrice() تومان</div>
+                        </div>
+                        <div style="width:50%;display:inline-block;">
+
+                            <div style="margin-left:50px;">نام خریدار : @Html.DisplayFor(modelItem => item.Name)</div>
+                            <div style="margin-left:50px;">موبایل : @Html.DisplayFor(modelItem => item.Mobile)</div>
+                            <div style="margin-left:50px;">ایمیل : @Html.DisplayFor(modelItem => item.Email)</div>
+                        </div>
+                        <div style="border-top:1px dashed silver"></div>
+                        <div>
+                            آدرس : @Html.DisplayFor(modelItem => item.Address) -
+                            کد پستی : @Html.DisplayFor(modelItem => item.CodePosti)
+                        </div>
+                        <div>توضیحات : @Html.DisplayFor(modelItem => item.Description)</div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="block-standart" style="direction:ltr">
+    @Html.PagedListPager(new PagedList.StaticPagedList<WebMarket.ViewModel.User.Factor.FactorViewModel>(Model.FactorList, Model.PageNumber, Model.PageCount, Model.TotalFactors),
+pageNumber => Url.Action(MVC.Admin.Factor.ActionNames.List, MVC.Admin.Factor.Name, new
+                {
+                    pageNumber = pageNumber,
+                    pageCount = Model.PageCount,
+                    PaymentBy = Model.PaymentBy
+                }), PagedList.Mvc.PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { AllowCache = false, HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "factorsList" }))
+</div>
+<br />

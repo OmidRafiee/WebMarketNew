@@ -96,6 +96,8 @@
     <Compile Include="User\Account\ResetPasswordViewModel.cs" />
     <Compile Include="User\Account\SendCodeViewModel.cs" />
     <Compile Include="User\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="User\Factor\FactorViewModel.cs" />
+    <Compile Include="User\Factor\FactorListViewModel.cs" />
     <Compile Include="User\Product\HomeIndexViewModel.cs" />
     <Compile Include="User\Setting\SettingViewModel.cs" />
     <Compile Include="User\ShoppingCart\BasketViewModel.cs" />
@@ -120,7 +122,6 @@
     <Folder Include="Admin\State\" />
     <Folder Include="User\City\" />
     <Folder Include="User\FactorItem\" />
-    <Folder Include="User\Factor\" />
     <Folder Include="User\Group\" />
     <Folder Include="User\Message\" />
     <Folder Include="User\Reseller\" />

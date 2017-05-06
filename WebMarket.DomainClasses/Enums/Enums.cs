@@ -7,10 +7,19 @@ using System.Threading.Tasks;
 
 namespace WebMarket.DomainClasses.Enums
 {
-   
-   #region Users
+    #region Factors
+    public enum Payments
+    {
+        [Display(Name = "پرداخت شده")]
+        Paid,
+        [Display(Name = "پرداخت نشده")]
+        UnPaid
+        
+    }
+    #endregion
+    #region Users
 
-   public enum Roles
+    public enum Roles
     {
         [Display(Name = "تغییر نقش")]
         NoRole,
@@ -85,19 +94,19 @@ namespace WebMarket.DomainClasses.Enums
         [Display(Name = "50")]
         Count50 = 50
     }
-   
-        #endregion //Public
 
-        public enum AddGroupStatus
-        {
-            AddSuccessfully,
-            GroupNameExist
-        }
+    #endregion //Public
 
-        public enum EditGroupStatus
-        {
-            EditSuccessfully,
-            GroupNameExist
-        }
-    
+    public enum AddGroupStatus
+    {
+        AddSuccessfully,
+        GroupNameExist
+    }
+
+    public enum EditGroupStatus
+    {
+        EditSuccessfully,
+        GroupNameExist
+    }
+
 }

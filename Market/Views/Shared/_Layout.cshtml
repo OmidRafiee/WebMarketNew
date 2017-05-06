@@ -61,7 +61,7 @@
                     <!--  = Logo =  -->
                     <!--  ==========  -->
                     <div class="span7">
-                        <a class="brand" href="~/Home/index">
+                        <a class="brand" href="@Url.Action(MVC.Home.Index())">
                             <img src="@Url.Content( "~/Content/WebMarket/webmarket/images/logo.png")" alt="Webmarket Logo" width="48" height="48" />
                             ><span class="pacifico">Webmarket</span>
                             <span class="tagline">فروشگاه هموراه تخفیف</span>
@@ -209,7 +209,7 @@
                                 <div class="cart">
                                     <p class="items">سبد خرید <span class="dark-clr">(@{Html.RenderAction("CartCount", "ShoppingCart");})  @*(@{Html.RenderAction(MVC.ShoppingCart.CartCount());})*@</span></p>
                                     <p class="dark-clr hidden-tablet">محصولات</p>
-                                    <a href="~/Home/Basket" class="btn btn-danger">
+                                    <a href="@Url.Action(MVC.ShoppingCart.Basket())" class="btn btn-danger">
                                         <!-- <span class="icon icons-cart"></span> -->
                                         <i class="icon-shopping-cart"></i>
                                     </a>

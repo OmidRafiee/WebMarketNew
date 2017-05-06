@@ -186,6 +186,16 @@ namespace Market.Controllers
             return View(lstBasket);
         }
 
+
+        [HttpGet]
+        public virtual ActionResult Buy()
+        {
+            return View();
+        }
+
+    
+
+
         // [HttpPost]
         //[AjaxOnly]
         //[OutputCache(Location = OutputCacheLocation.None, NoStore = true)]

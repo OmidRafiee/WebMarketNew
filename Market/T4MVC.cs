@@ -45,6 +45,7 @@ namespace T4MVC
     public class AdminClass
     {
         public readonly string Name = "Admin";
+        public Market.Areas.Admin.Controllers.FactorController Factor = new Market.Areas.Admin.Controllers.T4MVC_FactorController();
         public Market.Areas.Admin.Controllers.GroupController Group = new Market.Areas.Admin.Controllers.T4MVC_GroupController();
         public Market.Areas.Admin.Controllers.ProductController Product = new Market.Areas.Admin.Controllers.T4MVC_ProductController();
         public Market.Areas.Admin.Controllers.SettingController Setting = new Market.Areas.Admin.Controllers.T4MVC_SettingController();
