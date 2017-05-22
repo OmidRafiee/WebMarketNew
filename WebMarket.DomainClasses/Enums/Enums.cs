@@ -17,6 +17,18 @@ namespace WebMarket.DomainClasses.Enums
         
     }
     #endregion
+
+    #region Products
+    public enum ProductStatus
+    {
+        [Display(Name = "موجود")]
+        Available,
+        [Display(Name = "اتمام موجود")]
+        UnAvailable,
+        [Display(Name = "به زودی")]
+        Soon
+      }
+    #endregion
     #region Users
 
     public enum Roles
@@ -48,31 +60,8 @@ namespace WebMarket.DomainClasses.Enums
         [Display(Name = "نقش")]
         RoleDescription
     }
-    public enum VerifyUserStatus
-    {
-        VerifiedSuccessfully,
-        UserIsBaned,
-        VerifiedFaild
-    }
 
-    public enum AddUserStatus
-    {
-        UserNameExist,
-        PhoneNumberExist,
-        AddingUserSuccessfully
-    }
-    public enum EditedUserStatus
-    {
-        UserNameExist,
-        PhoneNumberExist,
-        UpdatingUserSuccessfully
-    }
 
-    public enum ChangePasswordResult
-    {
-        ChangedSuccessfully,
-        ChangedFaild
-    }
 
     #endregion //Users
 

@@ -197,9 +197,9 @@
                         success: function (result) {
                             if (result.Success) {
                                 //$("#cartContainer").html(result.Html);
-                                //$("#warpper").load(location.href + "#warpper");//reload div
+                                $("#cart").load('@Url.Action(MVC.Home.Index())' + "#cart");//reload div
                                 //location.reload();
-                            }
+                               }
                             eval(result.Script);
                         },
                         error: function () {

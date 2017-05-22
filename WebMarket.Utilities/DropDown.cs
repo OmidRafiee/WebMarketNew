@@ -61,6 +61,19 @@ namespace WebMarket.Utilities
             };
             return new SelectList(selectedPayment, "Value", "Text", payment);
         }
+
+        public static SelectList GetProductStatus(ProductStatus productStatus)
+        {
+            var selectedStatus = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "موجود", Value = "Available"},
+                new SelectListItem {Text = "اتمام موجود", Value = "UnAvailable"},
+                new SelectListItem {Text = "به زودی", Value = "Soon"}
+            };
+            return new SelectList(selectedStatus, "Value", "Text", productStatus);
+        }
+
+        
        
     }
 }

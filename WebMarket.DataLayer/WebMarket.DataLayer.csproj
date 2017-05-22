@@ -60,17 +60,9 @@
   <ItemGroup>
     <Compile Include="Context\IUnitOfWork.cs" />
     <Compile Include="Context\MarketDbContext.cs" />
-    <Compile Include="Migrations\201703280921260_Initialize.cs" />
-    <Compile Include="Migrations\201703280921260_Initialize.Designer.cs">
-      <DependentUpon>201703280921260_Initialize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704050557025_Initial.cs" />
-    <Compile Include="Migrations\201704050557025_Initial.Designer.cs">
-      <DependentUpon>201704050557025_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704050811596_slidshow.cs" />
-    <Compile Include="Migrations\201704050811596_slidshow.Designer.cs">
-      <DependentUpon>201704050811596_slidshow.cs</DependentUpon>
+    <Compile Include="Migrations\201705090726495_AddStatus.cs" />
+    <Compile Include="Migrations\201705090726495_AddStatus.Designer.cs">
+      <DependentUpon>201705090726495_AddStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,14 +82,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703280921260_Initialize.resx">
-      <DependentUpon>201703280921260_Initialize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704050557025_Initial.resx">
-      <DependentUpon>201704050557025_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704050811596_slidshow.resx">
-      <DependentUpon>201704050811596_slidshow.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705090726495_AddStatus.resx">
+      <DependentUpon>201705090726495_AddStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

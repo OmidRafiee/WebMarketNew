@@ -3,7 +3,7 @@ namespace WebMarket.DataLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initialize : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -12,11 +12,11 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 20),
-                        StateId = c.Int(nullable: false),
+                        Name = c.String(),
+                        StateId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.StateId)
                 .Index(t => t.StateId);
             
             CreateTable(
@@ -24,7 +24,7 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 500),
+                        Name = c.String(),
                         StateId = c.Int(),
                         CityId = c.Int(),
                         Address = c.String(),
@@ -40,7 +40,7 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -65,14 +65,14 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(),
                         Price = c.Int(nullable: false),
                         OffPrice = c.Int(nullable: false),
-                        Url = c.String(nullable: false, maxLength: 100),
-                        KeyWord = c.String(maxLength: 300),
-                        Description = c.String(maxLength: 500),
-                        Summery = c.String(nullable: false),
-                        Tag = c.String(maxLength: 200),
+                        Url = c.String(),
+                        KeyWord = c.String(),
+                        Description = c.String(),
+                        Summery = c.String(),
+                        Tag = c.String(),
                         Like = c.Int(nullable: false),
                         DisLike = c.Int(nullable: false),
                         Enable = c.Boolean(nullable: false),
@@ -88,9 +88,8 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(),
                         ParentId = c.Int(),
-                        DisplayOrder = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Groups", t => t.ParentId)
@@ -101,39 +100,17 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Family = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(),
+                        Family = c.String(),
+                        UserName = c.String(),
+                        Password = c.String(),
                         BirthDate = c.DateTime(),
-                        RegisterDate = c.DateTime(nullable: false),
-                        LastLoginDate = c.DateTime(),
+                        Mobile = c.String(),
+                        Tell = c.String(),
                         Gender = c.Boolean(nullable: false),
-                        Email = c.String(maxLength: 256),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 256),
+                        Role = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
-            
-            CreateTable(
-                "dbo.UserClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Factors",
@@ -142,54 +119,19 @@ namespace WebMarket.DataLayer.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         BuyDate = c.DateTime(nullable: false),
                         FollowCode = c.String(),
-                        Description = c.String(maxLength: 400),
+                        Description = c.String(),
                         UserId = c.Int(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Mobile = c.String(nullable: false),
-                        Email = c.String(nullable: false),
-                        Address = c.String(nullable: false),
-                        CodePosti = c.String(maxLength: 10),
+                        Name = c.String(),
+                        Mobile = c.String(),
+                        Email = c.String(),
+                        Address = c.String(),
+                        CodePosti = c.String(),
                         IsFinish = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.UserLogins",
-                c => new
-                    {
-                        LoginProvider = c.String(nullable: false, maxLength: 128),
-                        ProviderKey = c.String(nullable: false, maxLength: 128),
-                        UserId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.UserRoles",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false),
-                        RoleId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.Roles",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
                 "dbo.Messages",
@@ -210,37 +152,23 @@ namespace WebMarket.DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        MarketName = c.String(),
-                        Url = c.String(),
-                        PhoneNumber1 = c.String(),
-                        PhoneNumber2 = c.String(),
                         ContactUs = c.String(),
                         AboutUs = c.String(),
-                        Email = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.SlideShows",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
+                        Help = c.String(),
+                        PrivacyPolicy = c.String(),
                         Title = c.String(),
-                        Description = c.String(),
-                        Url = c.String(),
                         KeyWord = c.String(),
+                        Description = c.String(),
+                        SmtpServer = c.String(),
+                        Email = c.String(),
+                        EmailPassword = c.String(),
+                        EmailSenderName = c.String(),
                         Picture1 = c.String(),
-                        SubPicture11 = c.String(),
-                        SubPicture12 = c.String(),
                         Picture2 = c.String(),
-                        SubPicture21 = c.String(),
-                        SubPicture22 = c.String(),
                         Picture3 = c.String(),
-                        SubPicture31 = c.String(),
-                        SubPicture32 = c.String(),
                         Picture4 = c.String(),
-                        SubPicture41 = c.String(),
-                        SubPicture42 = c.String(),
+                        Picture5 = c.String(),
+                        Picture6 = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -248,25 +176,15 @@ namespace WebMarket.DataLayer.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserRoles", "UserId", "dbo.Users");
-            DropForeignKey("dbo.UserRoles", "RoleId", "dbo.Roles");
-            DropForeignKey("dbo.UserLogins", "UserId", "dbo.Users");
             DropForeignKey("dbo.Factors", "UserId", "dbo.Users");
             DropForeignKey("dbo.FactorItems", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.UserClaims", "UserId", "dbo.Users");
             DropForeignKey("dbo.Products", "GroupId", "dbo.Groups");
             DropForeignKey("dbo.Groups", "ParentId", "dbo.Groups");
             DropForeignKey("dbo.FactorItems", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Resellers", "StateId", "dbo.States");
             DropForeignKey("dbo.Cities", "StateId", "dbo.States");
             DropForeignKey("dbo.Resellers", "CityId", "dbo.Cities");
-            DropIndex("dbo.Roles", "RoleNameIndex");
-            DropIndex("dbo.UserRoles", new[] { "RoleId" });
-            DropIndex("dbo.UserRoles", new[] { "UserId" });
-            DropIndex("dbo.UserLogins", new[] { "UserId" });
             DropIndex("dbo.Factors", new[] { "UserId" });
-            DropIndex("dbo.UserClaims", new[] { "UserId" });
-            DropIndex("dbo.Users", "UserNameIndex");
             DropIndex("dbo.Groups", new[] { "ParentId" });
             DropIndex("dbo.Products", new[] { "GroupId" });
             DropIndex("dbo.FactorItems", new[] { "User_Id" });
@@ -274,14 +192,9 @@ namespace WebMarket.DataLayer.Migrations
             DropIndex("dbo.Resellers", new[] { "CityId" });
             DropIndex("dbo.Resellers", new[] { "StateId" });
             DropIndex("dbo.Cities", new[] { "StateId" });
-            DropTable("dbo.SlideShows");
             DropTable("dbo.Settings");
             DropTable("dbo.Messages");
-            DropTable("dbo.Roles");
-            DropTable("dbo.UserRoles");
-            DropTable("dbo.UserLogins");
             DropTable("dbo.Factors");
-            DropTable("dbo.UserClaims");
             DropTable("dbo.Users");
             DropTable("dbo.Groups");
             DropTable("dbo.Products");

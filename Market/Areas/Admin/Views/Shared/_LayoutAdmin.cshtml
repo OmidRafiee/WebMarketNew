@@ -31,7 +31,7 @@
     <link href="~/Content/ContentAdmin/sweet-alert.css" rel="stylesheet" />
     <link href="~/Content/ContentAdmin/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/ContentAdmin/font-awesome.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href=@Url.Content("~/Scripts/PersianDateTimePicker/PersianDatePicker.min.css")>
     @RenderSection("Styles", required: false)
 
 </head>
@@ -316,7 +316,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>سفارشات<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                      <a href="@Url.Action(MVC.Admin.Factor.List())">لیست</a>
+                                      <a href="@Url.Action(MVC.Admin.Factor.Index())">لیست</a>
                                 </li>
                                 <li>
                                      <a href="@Url.Action(MVC.Admin.Factor.SendMail())">ارسال ایمیل</a>
@@ -384,41 +384,9 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-    @*<script src="~/Scripts/ScriptAdmin/admin.js"></script>
-        <script src="~/Scripts/ScriptAdmin/bootstrap-select.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/bootstrap.js"></script>
-        <script src="~/Scripts/ScriptAdmin/bootstrap.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/jquery-MVC-RemoveRow.js"></script>
-        <script src="~/Scripts/ScriptAdmin/jquery.sliderPro.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/json2.js"></script>
-        <script src="~/Scripts/ScriptAdmin/json2.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/lazysizes.js"></script>
-        <script src="~/Scripts/ScriptAdmin/lazysizes.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/respond.js"></script>
-        <script src="~/Scripts/ScriptAdmin/respond.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/sb-admin-2.js"></script>
-        <script src="~/Scripts/ScriptAdmin/site.js"></script>
-        <script src="~/Scripts/ScriptAdmin/star-rating.js"></script>
-        <script src="~/Scripts/ScriptAdmin/star-rating.min.js"></script>
-        <script src="~/Scripts/ScriptAdmin/starRating-plugin.js"></script>
-        <script src="~/Scripts/ScriptAdmin/sweet-alert.js"></script>
-        <script src="~/Scripts/ScriptAdmin/sweet-alert.min.js"></script>*@
-
-
-
-
-
-
-    @*<script>
-            Admin.HighLightMenu();
-            Public.Routin();
-            $(function () {
-                window.AjaxForm.EnableBootstrapStyleValidation();
-                window.AjaxForm.EnablePostbackValidation();
-            });
-
-        </script>*@
+    <script src=@Url.Content("~/Scripts/PersianDateTimePicker/PersianDatePicker.min.js")></script>
+  
+    
     @RenderSection("Script", required: false)
 </body>
 

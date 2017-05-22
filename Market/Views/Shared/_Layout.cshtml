@@ -108,8 +108,8 @@
                         else
                         {
                             <div class="register">
-                                <a href="#loginModal" role="button" data-toggle="modal">ورود</a> یا
-                                <a href="..@Url.Action(MVC.User.Add())" role="button" data-toggle="modal">ثبت نام</a>
+                                <a href="@Url.Action(MVC.Account.Login())" role="button" data-toggle="modal">ورود</a> یا
+                                <a href="@Url.Action(MVC.User.Add())" role="button" data-toggle="modal">ثبت نام</a>
                             </div>
                         }
 
@@ -151,7 +151,7 @@
                                             <li><a href="shop.html">قالب بندی پیش فرض</a></li>
                                             <li><a href="shop-no-sidebar.html">تمام صفحه</a></li>
                                             <li><a href="product.html">محصول تکی</a></li>
-                                            <li><a href="shop-search.html">نتایج جستجو</a></li>
+                                            <li><a href="@Url.Action(MVC.Product.SearchProduct())">نتایج جستجو</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">

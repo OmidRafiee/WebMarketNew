@@ -32,5 +32,12 @@ namespace Market.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public virtual ActionResult SearchProduct()
+        {
+            var model = _productService.ListProducts ();
+            return View(model);
+        }
     }
 }

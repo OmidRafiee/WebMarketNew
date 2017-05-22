@@ -30,11 +30,8 @@ namespace WebMarket.ViewModel.Admin.Product
         [Range(0, int.MaxValue, ErrorMessage = "مقدار وارد شده نامعتبر است")]
         public int OffPrice { get; set; }
 
-        [Required(ErrorMessage = "آدرس محصول را وارد کنید")]
-        [Display(Name = "آدرس محصول")]
         //[System.Web.Mvc.Remote(action: "CheckUrl", controller: "Admin", HttpMethod = "POST", ErrorMessage = "(جهت ایجاد صفحه اختصاصی) آدرس وارد شده را بیشتر برای محصولی دیگر استفاده کرده اید  ")]
         //[DataType(DataType.Url,ErrorMessage = "آدرس محصول نامعتبر است")]
-        [StringLength(100, ErrorMessage = "این فیلد باید حداکثر 100 کاراکتر باشد")]
         public string Url { get; set; }
 
         [Display(Name = "کلمات کلیدی")]
@@ -66,6 +63,12 @@ namespace WebMarket.ViewModel.Admin.Product
         [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
 
+        //Way1
+        public DomainClasses.Enums.ProductStatus Status { get; set; }
+
+        //////Way2
+        //public  IEnumerable <SelectListItem> Status { get; set; }
+        
         public IEnumerable <GroupViewModel> Groups { get; set; }
     }
 }

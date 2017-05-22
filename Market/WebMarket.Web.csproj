@@ -1760,7 +1760,9 @@
     <Content Include="Scripts\WebMarket\underscore.js" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Scripts\Ztree\jquery.ztree.all.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
@@ -1862,6 +1864,7 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Product\SearchProduct.cshtml" />
     <None Include="Views\ShoppingCart\Buy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1873,6 +1876,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Files\Attachment\" />
     <Folder Include="Files\ProductImages\" />
     <Folder Include="Files\SlideShowImages\" />
     <Folder Include="Views\Captcha\" />

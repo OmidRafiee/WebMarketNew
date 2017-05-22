@@ -43,12 +43,12 @@ namespace WebMarket.ViewModel.Admin.User
         [Compare("Password", ErrorMessage = "تکرار کلمه عبور، با کلمه عبور یکسان نیست")]
         public string ConfirmPassword { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "ایمیل خود را وارد کنید")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "پست الکترونیکی خود را وارد کنید")]
         [System.Web.Mvc.Remote(action: "CheckEmail", controller: "User", HttpMethod = "POST",
-                               ErrorMessage = "ایمیل وارد شده هم اکنون توسط یکی از کاربران مورد استفاده است ")]
+                               ErrorMessage = "پست الکترونیکی وارد شده هم اکنون توسط یکی از کاربران مورد استفاده است ")]
         [Display(Name = "ایمیل")]
         [StringLength(50, ErrorMessage = "تعداد کاراکتر ها می بایست حداکثر 50 کاراکتر باشد")]
-        [RegularExpression(@"^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$", ErrorMessage = "ایمیل را بدرستی وارد کنید")]
+        [RegularExpression(@"^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$", ErrorMessage = " پست الکترونیکی وارد شده مجاز نمیباشد")]
         public string Email { get; set; }
 
         [UIHint("PersianDatePicker")]

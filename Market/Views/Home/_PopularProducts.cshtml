@@ -28,7 +28,7 @@
                                     "ProductImages")
                                 @*<img src="images/dummy/most-popular-products/popular-1.jpg" alt="" width="540" height="412"/>*@
                                 <div class="img-overlay">
-                                    <a href="@Url.Action(item.Url)" class="btn more btn-primary">توضیحات بیشتر</a>
+                                    <a href="@Url.Action(MVC.Product.ShowProduct(item.Url))" class="btn more btn-primary">توضیحات بیشتر</a>
                                     <a href="#" class="btn buy btn-danger" product="@item.Id">اضافه به سبد خرید</a>
                                 </div>
                             </div>

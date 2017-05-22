@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebMarket.DomainClasses.Entity;
+using WebMarket.DomainClasses.Enums;
 using WebMarket.ServiceLayer.Interfaces;
 using WebMarket.Utilities;
 using WebMarket.ViewModel.Admin.Group;
@@ -13,8 +14,7 @@ using WebMarket.ViewModel.Admin.Product;
 namespace Market.Areas.Admin.Controllers
 {
    
-    //[RoutePrefix("Product")]
-    //[Route("{action}")]
+    //[Authorize(Roles = "Admin")]
     public partial class ProductController : Controller
     {
         private readonly IGroupService _groupService;
@@ -49,15 +49,19 @@ namespace Market.Areas.Admin.Controllers
                                                                              Id = group.Id ,
                                                                              ParentId = group.ParentId
                                                                      });
-            return View(model);
+
+          return View(model);
         }
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Create(ProductDataEntriy model, HttpPostedFileBase uploadImage)
         {
             try
-            { 
+            {
+                //Edit this line
+                model.GroupId = 1;
                 
                 var product = AutoMapperConfig.Configuration.Mapper.Map<Product>(model);
                

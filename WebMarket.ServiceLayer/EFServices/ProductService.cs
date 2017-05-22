@@ -49,11 +49,9 @@ namespace WebMarket.ServiceLayer.EFServices
         {
             try
             {
-               await Task.Run(() =>
-                       {
-                           _products.Add(product);
-                           _unitOfWork.SaveChanges();
-                       });
+
+                _products.Add(product);
+                await _unitOfWork.SaveChangesAsync();
 
 
                 return true;
@@ -91,23 +89,26 @@ namespace WebMarket.ServiceLayer.EFServices
                                                                       Id = group.Id,
                                                                       ParentId = group.ParentId
                                                                   }).AsEnumerable();
-            return _products.Where(p => p.Id.Equals(id))
-                .Select(product => new ProductDataEntriy
-                {
-                    Groups = Group,
-                    Name = product.Name,
-                    Url = product.Url,
-                    Tag = product.Tag,
-                    GroupId = product.GroupId,
-                    Image = product.Image,
-                    Description = product.Description,
-                    Enable = product.Enable,
-                    KeyWord = product.KeyWord,
-                    OffPrice = product.OffPrice,
-                    Price = product.Price,
-                    Summery = product.Summery
 
-                }).FirstOrDefault();
+            return _products.Where(p => p.Id.Equals(id)).ProjectTo<ProductDataEntriy>(Market.AutoMapperConfig.Configuration.MapperConfiguration).FirstOrDefault();
+
+            //return _products.Where(p => p.Id.Equals(id))
+            //    .Select(product => new ProductDataEntriy
+            //    {
+            //        Groups = Group,
+            //        Name = product.Name,
+            //        Url = product.Url,
+            //        Tag = product.Tag,
+            //        GroupId = product.GroupId,
+            //        Image = product.Image,
+            //        Description = product.Description,
+            //        Enable = product.Enable,
+            //        KeyWord = product.KeyWord,
+            //        OffPrice = product.OffPrice,
+            //        Price = product.Price,
+            //        Summery = product.Summery
+
+            //    }).FirstOrDefault();
 
             //return _products.Where(p => p.Id.Equals(id))
             //         .Select(product => new ProductDataEntriy
@@ -133,12 +134,12 @@ namespace WebMarket.ServiceLayer.EFServices
             //         }).FirstOrDefault();
         }
 
-        public IEnumerable < ProductSectionViewModel > GetMoreSellProduct (int count)
+        public IEnumerable<ProductSectionViewModel> GetMoreSellProduct(int count)
         {
             return _products.AsNoTracking()
-               //.Where(a => a.FactorItems.Any())
+                //.Where(a => a.FactorItems.Any())
                .OrderBy(a => a.Id).Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration);
-               
+
         }
 
         public async Task<ProductDataEntriy> Update(int id)
@@ -146,13 +147,13 @@ namespace WebMarket.ServiceLayer.EFServices
             try
             {
                 var product = _products.Find(id);
-                var groups = _groupService.GetAll ()
-                                     .Select ( group => new GroupViewModel
+                var groups = _groupService.GetAll()
+                                     .Select(group => new GroupViewModel
                                                         {
-                                                                Name = group.Name ,
-                                                                Id = group.Id ,
-                                                                ParentId = group.ParentId
-                                                        } ).ToList ();
+                                                            Name = group.Name,
+                                                            Id = group.Id,
+                                                            ParentId = group.ParentId
+                                                        }).ToList();
                 var model = new ProductDataEntriy
                   {
                       Groups = groups,
@@ -170,17 +171,18 @@ namespace WebMarket.ServiceLayer.EFServices
                       Id = product.Id
                   };
 
+                //var model1= _products.Where(p => p.Id.Equals(id)).ProjectTo<ProductDataEntriy>(Market.AutoMapperConfig.Configuration.MapperConfiguration).FirstOrDefault();
 
-                await Task.Run(() =>
-                {
-                    Market.AutoMapperConfig.Configuration.Mapper.Map(product, model);
-                    _unitOfWork.MarkAsChanged(model);
-                    _unitOfWork.SaveChanges();
-                });
+
+                Market.AutoMapperConfig.Configuration.Mapper.Map(product, model);
+                _unitOfWork.MarkAsChanged(model);
+                await _unitOfWork.SaveChangesAsync();
+
+
 
 
             }
-            catch ( Exception )
+            catch (Exception)
             {
                 // ignored
             }
@@ -196,13 +198,12 @@ namespace WebMarket.ServiceLayer.EFServices
                 {
                     product.Image = path;
                 }
-                await Task.Run(() =>
-                  {
-                      Market.AutoMapperConfig.Configuration.Mapper.Map(viewModel, product);
 
-                      _unitOfWork.MarkAsChanged(product);
-                      _unitOfWork.SaveChanges();
-                  });
+                Market.AutoMapperConfig.Configuration.Mapper.Map(viewModel, product);
+
+                _unitOfWork.MarkAsChanged(product);
+                await _unitOfWork.SaveChangesAsync();
+
                 return true;
             }
             catch (Exception)
@@ -216,13 +217,12 @@ namespace WebMarket.ServiceLayer.EFServices
         {
             try
             {
-               
+
                 var product = _products.Find(id);
-                await Task.Run(() =>
-                {
-                    _unitOfWork.MarkAsDeleted(product);
-                    _unitOfWork.SaveChanges();
-                });
+
+                _unitOfWork.MarkAsDeleted(product);
+                await _unitOfWork.SaveChangesAsync();
+
 
                 return true;
             }
@@ -265,12 +265,12 @@ namespace WebMarket.ServiceLayer.EFServices
             }
         }
 
-        public bool IsGroupSelected ( int groupId )
+        public bool IsGroupSelected(int groupId)
         {
-            return _products.Find( groupId ) == null;
+            return _products.Find(groupId) == null;
         }
 
-        public ProductsViewModel FindByUrl ( string url )
+        public ProductsViewModel FindByUrl(string url)
         {
             try
             {

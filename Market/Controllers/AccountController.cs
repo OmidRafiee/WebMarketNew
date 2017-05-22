@@ -14,16 +14,21 @@ namespace Market.Controllers
 {
     public partial class AccountController : Controller
     {
+        private readonly IEmailService _emailService;
+
+
         private readonly IAuthenticationManager _authenticationManager;
         private readonly IApplicationSignInManager _signInManager;
         private readonly IApplicationUserManager _userManager;
         public AccountController(IApplicationUserManager userManager,
                                  IApplicationSignInManager signInManager,
-                                 IAuthenticationManager authenticationManager)
+                                 IAuthenticationManager authenticationManager, 
+                                IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authenticationManager = authenticationManager;
+            _emailService = emailService;
         }
 
         [AllowAnonymous]
@@ -59,16 +64,16 @@ namespace Market.Controllers
                 case SignInStatus.Success:
                     return redirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Error");
+                    return View(MVC.Shared.Views.Error);
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+                    return RedirectToAction(MVC.Account.ActionNames.SendCode, new { ReturnUrl = returnUrl });
                 default:
                     ModelState.AddModelError("", "نام کاربری / کلمه عبور مورد تایید نیست");
                     return View(model);
             }
         }
 
-        ////
+        
         //// POST: /Account/LogOff
         //[HttpPost]
         //[ValidateAntiForgeryToken]
@@ -78,7 +83,7 @@ namespace Market.Controllers
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             await _userManager.UpdateSecurityStampAsync(user.Id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.ActionNames.Index);
         }
 
         private ActionResult redirectToLocal(string returnUrl)
@@ -87,7 +92,7 @@ namespace Market.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.ActionNames.Index);
         }
 
         // GET: /Account/ForgotPasswor
@@ -107,19 +112,26 @@ namespace Market.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    ViewBag.MassegeFail = "پست الکترونیکی با ابن مشخصات موجود نمی باشد";
+                    return View(model);
                 }
 
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account",
                     new { userId = user.Id, code }, protocol: Request.Url.Scheme);
                 await _userManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
-                ViewBag.Link = callbackUrl;
-                return View("ForgotPasswordConfirmation");
+
+                await _emailService.SendMail( "Reset Password" ,
+                                               "Please reset your password by clicking here: <a href=\"" + callbackUrl +
+                                               "\">link</a>" ,
+                                               user.Email );
+
+                ViewBag.MassegeSuccess = "  لینک بازیابی حداکثر تا 5 دقیقه دیگر به پست الکترونیکی شما ارسال می شود. در صورت عدم مشاهده قسمت اسپم پست الکترونیکی خود را چک کنید.";
+                return View(model);
             }
 
             // If we got this far, something failed, redisplay form
@@ -130,10 +142,10 @@ namespace Market.Controllers
         [AllowAnonymous]
         public virtual ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View(MVC.Shared.Views.Error) : View();
         }
 
-        //
+        
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -144,15 +156,17 @@ namespace Market.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                ViewBag.MassegeFail = "پست الکترونیکی با ابن مشخصات موجود نمی باشد";
+                return View(model);
             }
             var result = await _userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
+                TempData["MassegeSuccess"] = "کلمه عبور با موفقیت تغییر پیدا کرد";
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             addErrors(result);
@@ -165,6 +179,7 @@ namespace Market.Controllers
         {
             return View();
         }
+
         // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
@@ -179,7 +194,7 @@ namespace Market.Controllers
             // Generate the token and send it
             if (!await _signInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
-                return View("Error");
+                return View(MVC.Shared.Views.Error);
             }
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl });
         }

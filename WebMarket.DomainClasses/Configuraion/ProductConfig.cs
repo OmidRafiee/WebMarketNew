@@ -21,6 +21,7 @@ namespace WebMarket.DomainClasses.Configuraion
              this.Property(a => a.KeyWord).HasMaxLength(300);
              this.Property(a => a.Summery).IsRequired();
              this.Property(a => a.Tag).HasMaxLength(200);
+             this.Property(a => a.Status).HasMaxLength(30);
          }
     }
 }

@@ -144,8 +144,8 @@ body.pattern-12 { background: url('../images/backgrounds/pattern-12.gif?13771982
 
 hr { border-top-color: #e0e0e0; }
 
-a { color: #22f0ff; -webkit-transition: color 0.2s ease; -moz-transition: color 0.2s ease; -o-transition: color 0.2s ease; transition: color 0.2s ease; }
-a:hover { color: #008e99; }
+a { color: #0088cc; -webkit-transition: color 0.2s ease; -moz-transition: color 0.2s ease; -o-transition: color 0.2s ease; transition: color 0.2s ease; }
+a:hover { color: #58a5e8; }
 
 .clickable { cursor: pointer; }
 

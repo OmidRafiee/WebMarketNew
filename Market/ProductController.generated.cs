@@ -79,12 +79,14 @@ namespace Market.Controllers
         public class ActionNamesClass
         {
             public readonly string ShowProduct = "ShowProduct";
+            public readonly string SearchProduct = "SearchProduct";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string ShowProduct = "ShowProduct";
+            public const string SearchProduct = "SearchProduct";
         }
 
 
@@ -106,8 +108,10 @@ namespace Market.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string SearchProduct = "SearchProduct";
                 public readonly string ShowProduct = "ShowProduct";
             }
+            public readonly string SearchProduct = "~/Views/Product/SearchProduct.cshtml";
             public readonly string ShowProduct = "~/Views/Product/ShowProduct.cshtml";
         }
     }
@@ -126,6 +130,17 @@ namespace Market.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ShowProduct);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ShowProductOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SearchProductOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SearchProduct()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SearchProduct);
+            SearchProductOverride(callInfo);
             return callInfo;
         }
 

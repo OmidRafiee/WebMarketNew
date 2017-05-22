@@ -87,5 +87,7 @@ namespace Market.Controllers
             return PartialView(MVC.Home.Views._PopularProducts, products);
         }
 
+       
+
     }
 }

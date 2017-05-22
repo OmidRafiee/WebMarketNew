@@ -87,6 +87,7 @@
     <Compile Include="Admin\Setting\EditSettingDataEntry.cs" />
     <Compile Include="Admin\Setting\SlideShowDataEntry.cs" />
     <Compile Include="Admin\User\DetailsUserViewModel.cs" />
+    <Compile Include="Admin\User\EditUserViewModel.cs" />
     <Compile Include="Admin\User\UserDataEntry.cs" />
     <Compile Include="Admin\User\UsersListViewModel.cs" />
     <Compile Include="Admin\User\UserViewModel.cs" />

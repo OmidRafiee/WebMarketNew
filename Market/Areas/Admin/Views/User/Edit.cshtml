@@ -1,4 +1,4 @@
-﻿@model WebMarket.ViewModel.Admin.User.UserDataEntry
+﻿@model WebMarket.ViewModel.Admin.User.EditUserViewModel
 
 @{
     ViewBag.Title = "ویرایش کاربر";
@@ -20,7 +20,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -65,31 +65,49 @@
                     </div>
                 </div>
 
+
                 @*<div class="form-group">
-                    @Html.LabelFor(model => model., htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
-                        @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+                        @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(model => model.RolesList,
+                                                   Model.RolesList,
+                                                   new { @class = "form-control" })
+                        </div>
+                    </div>*@
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.BirthDate)
-                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.BirthDate)
+                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("نقش", new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @foreach (var item in Model.RolesList)
+                        {
+                            <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                            @Html.Label(item.Value, new { @class = "control-label" })
+                        }
+                    </div>
+                </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-5">
+                            <input type="submit" value="ذخیره تغییرات" class="btn  btn-success" />
+                            @Html.ActionLink("انصراف",
+                                              MVC.Admin.User.ActionNames.Index,
+                                              MVC.Admin.User.Name,
+                                              null,
+                                              new { @class = "btn  btn-default" })
                         </div>
                     </div>
                 </div>
+         
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-5">
-                        <input type="submit" value="ذخیره تغییرات" class="btn  btn-success" />
-                        @Html.ActionLink("انصراف", MVC.Admin.User.ActionNames.Index, MVC.Admin.User.Name, null, new { @class = "btn  btn-default" })
-                    </div>
-                </div>
-            </div>
         }
     </div>
 </div>

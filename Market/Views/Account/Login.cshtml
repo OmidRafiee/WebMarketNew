@@ -15,7 +15,7 @@
 {
     @Html.AntiForgeryToken()
     <h2 class="title-area">ورود به سایت </h2>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true,"",new {Style="Color:Red"})
     <hr />
     <div class="control-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
@@ -40,7 +40,7 @@
     </div>
     <div class="control-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Log in" class="btn btn-success push-down-10" style="margin-right:160px;  width: 100px;height: 40px;" />
+            <input type="submit" value="ورود" class="btn btn-success push-down-10" style="margin-right:160px;  width: 70px;height: 30px;" />
         </div>
     </div>
     <div class="fcontrol-group">

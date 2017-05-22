@@ -12,28 +12,28 @@ namespace Market.AutoMapperConfig
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductDataEntriy>()
-                    .ForMember(model => model.Groups, op => op.Ignore())
-                    .ForMember(model => model.Image, op => op.Ignore())
-                    .ForMember(model => model.GroupId, op => op.MapFrom(product=>product.Group.Id));
+            CreateMap < Product , ProductDataEntriy > ()
+                    .ForMember ( model => model.Groups ,op => op.Ignore () )
+                    .ForMember ( model => model.Image ,op => op.Ignore () )
+                    .ForMember ( model => model.GroupId ,op => op.MapFrom ( product => product.Group.Id ))
+                    .ForMember(model => model.Status, op => op.MapFrom(p => p.Status));
+                   
 
             CreateMap<ProductDataEntriy, Product>()
-                    .ForMember(model => model.Id,
-                                 op => op.Ignore())
-                    .ForMember(model => model.DisLike,
-                                 op => op.Ignore())
-                    .ForMember(model => model.Like,
-                                 op => op.Ignore())
-                    .ForMember(model => model.FactorItems,
-                                 op => op.Ignore())
-                    .ForMember(model => model.Group,
-                                 op => op.Ignore());
+                    .ForMember(model => model.Id,op => op.Ignore())
+                    .ForMember(model => model.DisLike,op => op.Ignore())
+                    .ForMember(model => model.Like,op => op.Ignore())
+                    .ForMember(model => model.FactorItems,op => op.Ignore())
+                    .ForMember(model => model.Group,op => op.Ignore())
+                    .ForMember(model => model.Url, op => op.MapFrom(p=>p.Name))
+                    .ForMember(model => model.Status, op => op.MapFrom(p => p.Status));
 
 
             CreateMap<Product, ProductSectionViewModel>()
                    .ForMember(model => model.GroupName,
                                  op => op.MapFrom(p => p.Group.Name));
-            //CreateMap<ProductSectionViewModel, Product>();
+            //CreateMap<ProductSectionViewModel, Product>()
+            //    .ForMember(model => model.Status,op => op.Ignore());
 
             CreateMap<Product, ProductsViewModel>()
                    .ForMember(model => model.GroupName,
@@ -44,7 +44,11 @@ namespace Market.AutoMapperConfig
                     .ForMember(model => model.DisLike,op => op.Ignore())
                     .ForMember(model => model.Like,op => op.Ignore())
                     .ForMember(model => model.FactorItems,op => op.Ignore())
-                    .ForMember(model => model.Group,op => op.Ignore());
+                    .ForMember(model => model.Group,op => op.Ignore())
+                    .ForMember(model => model.Status, op => op.Ignore());
+
+
+            CreateMap<ProductSectionViewModel, ProductSectionViewModel>();
 
         }
     }

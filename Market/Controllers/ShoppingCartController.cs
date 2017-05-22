@@ -64,7 +64,7 @@ namespace Market.Controllers
                     {
                         Success = true,
                         Script = MessageBox.Show("کالا به سبد خرید اضافه شد",MessageType.Success).Script,
-                        Html = ""
+                        Html =""
                     });
 
                 }

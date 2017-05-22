@@ -33,19 +33,13 @@ namespace Market.Areas.Admin.Controllers
         }
 
       
-        //[Route("Edit")]
-        //public virtual Task < ActionResult > EditSetting( EditSettingDataEntry viewModel )
-        //{
-        //    _settingService.Update(viewModel);
-        //    return RedirectToAction(MVC.Admin.Home.Index());
-        //}
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> EditSetting(EditSettingDataEntry viewModel)
         {
             _settingService.Update(viewModel);
-            //return RedirectToAction(MVC.Admin.Home.ActionNames.Index, MVC.Admin.Home.Name);
-            return MessageBox.Show(" مشخصات غروشگاه با موفقیت ثبت شد", MessageType.Success);
+            return MessageBox.Show(" مشخصات فروشگاه با موفقیت ثبت شد", MessageType.Success);
 
         }
 

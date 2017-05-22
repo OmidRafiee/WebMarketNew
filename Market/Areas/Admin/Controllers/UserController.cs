@@ -96,7 +96,6 @@ namespace Market.Areas.Admin.Controllers
         #region Details
 
         [HttpGet]
-        //[Route("Details/{id:long}")]
         public virtual ActionResult Details(int? id)
         {
             if (id == null)
@@ -113,7 +112,6 @@ namespace Market.Areas.Admin.Controllers
 
         #region Edit User
 
-        //[Route ( "Edit/{id}" )]
         [HttpGet]
         public virtual async Task<ActionResult> Edit(int? id)
         {
@@ -125,21 +123,30 @@ namespace Market.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
-            //var user1 = AutoMapperConfig.Configuration.Mapper.Map<ApplicationUser>(user);
-
-            //    ViewBag.Roles = new SelectList(_userService.GetAllRoles(), "Id", "Description", user.RoleId);
+            var model = AutoMapperConfig.Configuration.Mapper.Map<EditUserViewModel>(user);
+            var userRoles = await _userService.GetRolesAsync(user.Id);
+            model.RolesList = ( await _roleService.GetAllCustomRolesAsync()).Select ( x => new SelectListItem
+                {
+                        Selected =userRoles.Contains(x.Name),
+                        Text = x.Name ,
+                        Value = x.Name
+                });
+                        
+            //return View(new EditUserViewModel
+            //{
+            //    Id = user.Id,
+            //    Email = user.Email,
+            //    RolesList = (await _roleManager.GetAllCustomRolesAsync()).Select(x => new SelectListItem
+            //    {
+            //        Selected = userRoles.Contains(x.Name),
+            //        Text = x.Name,
+            //        Value = x.Name
+            //    })
+            //ViewBag.Roles = new SelectList(_userService.GetAllRoles(), "Id", "Description", user.RoleId);
             //ProjectTo < DetailsUserViewModel > ( Market.AutoMapperConfig.Configuration.MapperConfiguration )  .FirstOrDefault ();
 
-            return View(new WebMarket.ViewModel.Admin.User.UserDataEntry
-                        {
-                            Id = user.Id,
-                            Name = user.Name,
-                            Family = user.Family,
-                            BirthDate = user.BirthDate,
-                            UserName = user.UserName,
-                            PhoneNumber = user.PhoneNumber,
-                            Email = user.PhoneNumber
-                        });
+          
+            return View(model);
         }
 
 
@@ -159,15 +166,9 @@ namespace Market.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-
-            return View(new DetailsUserViewModel
-            {
-                Name = role.Name,
-                Family = role.Family,
-                UserName = role.UserName,
-                PhoneNumber = role.PhoneNumber,
-                Email = role.PhoneNumber
-            });
+            var model = AutoMapperConfig.Configuration.Mapper.Map<DetailsUserViewModel>(role);
+           
+            return View (model);
         }
 
 
@@ -193,8 +194,7 @@ namespace Market.Areas.Admin.Controllers
                 {
                     return MessageBox.Show("در عملیات حذف کاربر مشکلی رخ داد", MessageType.Error);
                 }
-
-                return RedirectToAction(MVC.Admin.User.List());
+                return RedirectToAction(MVC.Admin.User.Index());
             }
             return View();
         }
@@ -231,10 +231,8 @@ namespace Market.Areas.Admin.Controllers
                     }
                 }
                 return MessageBox.Show(ModelState.GetErrors(), MessageType.Warning);
-
             }
             return MessageBox.Show("ابتدا نقش کاربر را مشخص کنید", MessageType.Warning);
-
         }
 
 

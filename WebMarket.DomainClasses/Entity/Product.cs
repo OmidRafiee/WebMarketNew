@@ -22,6 +22,7 @@ namespace WebMarket.DomainClasses.Entity
         public bool Enable { get; set; }
         public int GroupId { get; set; }
         public string Image { get; set; }
+        public string Status { get; set; }
 
         public virtual ICollection<FactorItem> FactorItems { get; set; }
         public virtual Group Group { get; set; }

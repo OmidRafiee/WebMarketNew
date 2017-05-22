@@ -49,15 +49,7 @@
         </div>
     </div>
 
-    <div class="control-group">
-        @Html.LabelFor(model => model.Url)
-        <div class="control-group">
-            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @required = "", style = "width: 240px;" } })
-            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div>
+  <div>
         @Html.LabelFor(model => model.Summery)
         <div class="control-group">
             @Html.TextAreaFor(model => model.Summery, new { htmlAttributes = new { @class = "" } })
@@ -98,7 +90,18 @@
         </div>
     </div>
 
+    <div class="group">
+        @Html.Label("وضیعت")
+        <div class="control-group">
+            @*way1 only enum*@
+            @Html.EnumDropDownListFor(model=>model.Status)
 
+            @*@*way2 only select*@
+            @*@Html.DropDownList("status",Model.Status)*@
+
+        </div>
+    </div>
+    
     @Html.LabelFor(model => model.Image)
     <div class="control-group">
         <div class="col-md-10">
