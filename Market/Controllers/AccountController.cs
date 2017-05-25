@@ -75,15 +75,14 @@ namespace Market.Controllers
 
         
         //// POST: /Account/LogOff
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+       
         public virtual async Task<ActionResult> LogOff()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             await _userManager.UpdateSecurityStampAsync(user.Id);
 
-            return RedirectToAction(MVC.Home.ActionNames.Index);
+            return RedirectToAction(MVC.Home.Index());
         }
 
         private ActionResult redirectToLocal(string returnUrl)
@@ -92,7 +91,7 @@ namespace Market.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction(MVC.Home.ActionNames.Index);
+            return RedirectToAction(MVC.Home.Index());
         }
 
         // GET: /Account/ForgotPasswor

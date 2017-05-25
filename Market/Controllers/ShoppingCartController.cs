@@ -42,6 +42,7 @@ namespace Market.Controllers
                     if (httpCookie != null)
                     {
                         var cookie = new HttpCookie("Market_" + id, count.ToString());
+                        //cookie.Value += ","+id.ToString ();
                         cookie.Expires = DateTime.Now.AddDays(10);
                         cookie.HttpOnly = true;
                         Response.Cookies.Set(cookie);
@@ -196,51 +197,5 @@ namespace Market.Controllers
     
 
 
-        // [HttpPost]
-        //[AjaxOnly]
-        //[OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        //public virtual async Task<ActionResult> AddToCart(long? productId, decimal? value)
-        //{
-        //    if (productId == null)
-        //        return Content(null);
-        //    var product = _productService.GetById(productId.Value);
-        //    if (product == null) return Content(null);
-        //    var count = value ?? product.Ratio;
-        //    var result = decimal.Remainder(count, product.Ratio);
-        //    if (result!= decimal.Zero)
-        //        return Content(null);
-
-        //    if (!_productService.CanAddToShoppingCart(productId.Value,count))
-        //        return Content("nok");
-
-        //    var cartItem = _shoppingCartService.GetCartItem(productId.Value, User.Identity.Name);
-
-        //     product.Reserve += count;
-
-        //    if (cartItem == null)
-        //    {
-        //        _shoppingCartService.Add(new ShoppingCart
-        //        {
-        //            CartNumber = User.Identity.Name,
-        //            Quantity = count,
-        //            ProductId = productId.Value,
-        //            CreateDate = DateTime.Now
-        //        });
-        //    }
-        //    else
-        //    {
-        //        cartItem.Quantity += count;
-        //    }
-
-        //    await _unitOfWork.SaveAllChangesAsync(false);
-
-        //    var totalValueInCart = _shoppingCartService.TotalValueInCart(User.Identity.Name);
-        //    if (string.IsNullOrEmpty(HttpContext.GetCookieValue(TotalInCartCookieName)))
-        //        HttpContext.AddCookie(TotalInCartCookieName, totalValueInCart.ToString(CultureInfo.InvariantCulture), DateTime.Now.AddDays(1));
-        //    else HttpContext.UpdateCookie(TotalInCartCookieName, totalValueInCart.ToString(CultureInfo.InvariantCulture));
-
-        //    return Content("ok");
-        //}
-        //#endregion
     }
 }

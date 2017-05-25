@@ -75,7 +75,7 @@ namespace Market.Controllers
         [ChildActionOnly]
         public virtual ActionResult NewProducts()
         {
-            var products = _productService.GetMoreSellProduct(8);
+            var products = _productService.GetNewProduct(8);
             return PartialView(MVC.Home.Views._NewProducts, products);
         }
 
@@ -83,7 +83,7 @@ namespace Market.Controllers
         [ChildActionOnly]
         public virtual ActionResult PopularProducts()
         {
-            var products = _productService.GetMoreSellProduct(4);
+            var products = _productService.GetPopularProduct(4);
             return PartialView(MVC.Home.Views._PopularProducts, products);
         }
 

@@ -43,9 +43,9 @@ namespace Market.Areas.Admin.Controllers
                 PageCount = pageCount,
                 PaymentBy = paymentBy
             };
-            
-            ViewBag.PaymentListBy = DropDown.GetPaymentList(paymentBy);
-            
+
+            ViewBag.PaymentListBy = EnumToList(typeof(Payments),null);// DropDown.GetPaymentList(paymentBy);
+            ViewBag.PaymentTitle = GetEnumDisplayValue ( paymentBy );
             return  PartialView(MVC.Admin.Factor.Views._ListFactor, model);
         }
 
@@ -78,5 +78,37 @@ namespace Market.Areas.Admin.Controllers
             return MessageBox.Show("در ارسال پیام خطا رخ داد", MessageType.Error);
         }
 
+
+
+        //ForBase Contorler
+        public string GetEnumDisplayValue(Enum enumName)
+        {
+            var type = (Type)enumName.GetType();
+            var field = type.GetField(enumName.ToString());
+            if ( field == null )
+                return enumName.ToString ();
+            var display = ((System.ComponentModel.DataAnnotations.DisplayAttribute[])field.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.DisplayAttribute), false)).FirstOrDefault();
+            return display != null
+                ? @display.GetName()
+                : enumName.ToString();
+        }
+
+        public List<SelectListItem> EnumToList(Type enumType, Enum selectedItem)
+        {
+            var items = new List<SelectListItem>();
+            if (enumType == null)
+                return items;
+
+            var values = Enum.GetValues(enumType);
+            items.AddRange(from Enum item in values
+                           select new SelectListItem
+                           {
+                               Value = item.ToString(),
+                               Text = GetEnumDisplayValue(item),
+                               Selected = selectedItem != null && item.ToString() == selectedItem.ToString()
+                           });
+            return items.OrderBy(item => item.Text)
+                        .ToList();
+        }
     }
 }

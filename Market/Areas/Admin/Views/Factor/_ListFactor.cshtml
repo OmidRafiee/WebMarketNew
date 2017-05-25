@@ -53,7 +53,9 @@
     <table class="table table-bordered table-hover" style="border:1px solid #000000">
         <tr>
             <td style="text-align:center;background-color:#7e9399">
-                <h1 style="color:#ffffff">@{@Html.DropDownList("PaymentBy", ViewBag.PaymentListBy as IEnumerable<SelectListItem>, new { @class = "form-control", @disabled = "disabled" })}(@Model.TotalFactors.ToString())</h1>
+                <h1 style="color:#ffffff">
+                    @ViewBag.PaymentTitle (@Model.TotalFactors.ToString())
+                      </h1>
             </td>
         </tr>
 

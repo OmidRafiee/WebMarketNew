@@ -21,6 +21,9 @@ namespace WebMarket.ServiceLayer.EFServices
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDbSet<Product> _products;
         private readonly IGroupService _groupService;
+        private readonly IDbSet<FactorItem> _factorItem;
+        
+
 
         #endregion
 
@@ -29,6 +32,7 @@ namespace WebMarket.ServiceLayer.EFServices
         {
             _unitOfWork = unitOfWork;
             _products = _unitOfWork.Set<Product>();
+            _factorItem = _unitOfWork.Set<FactorItem>();
             _groupService = groupService;
         }
         #endregion
@@ -137,9 +141,33 @@ namespace WebMarket.ServiceLayer.EFServices
         public IEnumerable<ProductSectionViewModel> GetMoreSellProduct(int count)
         {
             return _products.AsNoTracking()
-                //.Where(a => a.FactorItems.Any())
+                .Where(a => a.FactorItems.Any())
                .OrderBy(a => a.Id).Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration);
 
+        }
+
+        public IEnumerable < ProductSectionViewModel > GetNewProduct ( int count )
+        {
+            return _products.AsNoTracking()
+               .OrderBy(a => a.Id).Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration);
+        }
+
+        public IEnumerable < ProductSectionViewModel > GetPopularProduct ( int count )
+        {
+            var products = _factorItem.AsNoTracking().GroupBy ( item => item.ProductId ).Select ( items => new
+                                                                                            {
+                                                                                                    productId = items.Key ,
+                                                                                                    count = items.Count ()
+                                                                                            } )
+                                                                        .OrderByDescending ( arg => arg.count )
+                                                                        .Take ( count ).Skip ( 0 )
+                                                                        .Select ( arg => arg.productId ).ToList ();
+            //var model = _products.Select(a => a.FactorItems.Select ( item => item.ProductId ).Count()).AsQueryable();
+
+            //var model = _products.Where(a => a.FactorItems.Max(b=>b.ProductId)).AsQueryable();
+            var model = _products.AsNoTracking ().Where ( product => products.Contains ( product.Id ) );
+
+            return  model.Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration).ToList ();
         }
 
         public async Task<ProductDataEntriy> Update(int id)

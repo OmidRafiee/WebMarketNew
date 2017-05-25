@@ -20,6 +20,9 @@ namespace WebMarket.ServiceLayer.Interfaces
          ProductDataEntriy GetForEdit(int id);
 
          IEnumerable<ProductSectionViewModel> GetMoreSellProduct(int count);
+         IEnumerable<ProductSectionViewModel> GetNewProduct(int count);
+         IEnumerable<ProductSectionViewModel> GetPopularProduct(int count);
+
          Product FindByName( string name );
          ProductsViewModel FindById(int id);
          bool IsGroupSelected (int groupId);
