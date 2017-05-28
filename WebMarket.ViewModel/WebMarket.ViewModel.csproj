@@ -99,6 +99,7 @@
     <Compile Include="User\Account\VerifyCodeViewModel.cs" />
     <Compile Include="User\Factor\FactorViewModel.cs" />
     <Compile Include="User\Factor\FactorListViewModel.cs" />
+    <Compile Include="User\Product\ProductPriceViewModel.cs" />
     <Compile Include="User\Product\HomeIndexViewModel.cs" />
     <Compile Include="User\Setting\SettingViewModel.cs" />
     <Compile Include="User\ShoppingCart\BasketViewModel.cs" />

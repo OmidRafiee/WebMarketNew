@@ -29,6 +29,6 @@ namespace WebMarket.ServiceLayer.Interfaces
 
          ProductsViewModel FindByUrl(string url);
 
-         
+         ViewModel.User.Product.ProductPriceViewModel GetPrice ();
     }
 }

@@ -8,17 +8,23 @@ using WebMarket.ViewModel.Admin.Group;
 
 namespace Market.AutoMapperConfig
 {
-    public class GroupProfile:AutoMapper.Profile
+    public class GroupProfile : AutoMapper.Profile
     {
-        public GroupProfile ()
+        public GroupProfile()
         {
-            CreateMap < Group , GroupDataEntriy > ();
-                   
+            CreateMap<Group, GroupDataEntriy>();
 
             CreateMap<GroupDataEntriy, Group>()
-                    .ForMember(model=>model.Products,op=>op.Ignore())
-                    .ForMember(model=>model.Id,op=>op.Ignore())
+                    .ForMember(model => model.Products, op => op.Ignore())
+                    .ForMember(model => model.Id, op => op.Ignore())
                    .ForMember(model => model.Children, op => op.Ignore());
+
+            CreateMap < Group , GroupViewModel > ();
+               
+            CreateMap < GroupViewModel , Group > ()
+                  .ForMember(model => model.Products, op => op.Ignore())
+                  .ForMember(model => model.Children, op => op.Ignore());
+
         }
     }
 }

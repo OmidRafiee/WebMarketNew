@@ -11,6 +11,8 @@ using WebMarket.ServiceLayer.Interfaces;
 
 namespace WebMarket.ServiceLayer.EFServices
 {
+    using AutoMapper.QueryableExtensions;
+
     public class GroupService : IGroupService
     {
         #region Fields
@@ -30,18 +32,24 @@ namespace WebMarket.ServiceLayer.EFServices
 
         #endregion
 
+        public IEnumerable<ViewModel.Admin.Group.GroupViewModel> GetFirstLevelGroups()
+        {
+            return _groups.AsNoTracking().Where(a => a.ParentId == null).ProjectTo<ViewModel.Admin.Group.GroupViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration);
+
+        }
+
         public bool CheckExistName(string name)
         {
             return _groups.Any(group => group.Name == name);
         }
 
-        public IList<Group> GetFirstLevelGroup()
-        {
-            return
-                _groups.AsNoTracking()
-                    .Where(a => a.ParentId == null)
-                    .ToList();
-        }
+        //public IList<Group> GetFirstLevelGroup()
+        //{
+        //    return
+        //        _groups.AsNoTracking()
+        //            .Where(a => a.ParentId == null)
+        //            .ToList();
+        //}
 
         public IEnumerable<Group> GetSecondLevelGroups()
         {

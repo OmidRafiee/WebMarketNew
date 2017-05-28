@@ -96,52 +96,12 @@ namespace WebMarket.ServiceLayer.EFServices
 
             return _products.Where(p => p.Id.Equals(id)).ProjectTo<ProductDataEntriy>(Market.AutoMapperConfig.Configuration.MapperConfiguration).FirstOrDefault();
 
-            //return _products.Where(p => p.Id.Equals(id))
-            //    .Select(product => new ProductDataEntriy
-            //    {
-            //        Groups = Group,
-            //        Name = product.Name,
-            //        Url = product.Url,
-            //        Tag = product.Tag,
-            //        GroupId = product.GroupId,
-            //        Image = product.Image,
-            //        Description = product.Description,
-            //        Enable = product.Enable,
-            //        KeyWord = product.KeyWord,
-            //        OffPrice = product.OffPrice,
-            //        Price = product.Price,
-            //        Summery = product.Summery
-
-            //    }).FirstOrDefault();
-
-            //return _products.Where(p => p.Id.Equals(id))
-            //         .Select(product => new ProductDataEntriy
-            //         {
-            //             Groups = _groupService.GetAll().Select(group => new GroupViewModel
-            //                                 {
-            //                                     Name = group.Name,
-            //                                     Id = group.Id,
-            //                                     ParentId = group.ParentId
-            //                                 }),
-            //             Name = product.Name,
-            //             Url = product.Url,
-            //             Tag = product.Tag,
-            //             GroupId = product.GroupId,
-            //             Image = product.Image,
-            //             Description = product.Description,
-            //             Enable = product.Enable,
-            //             KeyWord = product.KeyWord,
-            //             OffPrice = product.OffPrice,
-            //             Price = product.Price,
-            //             Summery = product.Summery
-
-            //         }).FirstOrDefault();
         }
 
         public IEnumerable<ProductSectionViewModel> GetMoreSellProduct(int count)
         {
             return _products.AsNoTracking()
-                .Where(a => a.FactorItems.Any())
+                //.Where(a => a.FactorItems.Any())
                .OrderBy(a => a.Id).Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration);
 
         }
@@ -162,9 +122,7 @@ namespace WebMarket.ServiceLayer.EFServices
                                                                         .OrderByDescending ( arg => arg.count )
                                                                         .Take ( count ).Skip ( 0 )
                                                                         .Select ( arg => arg.productId ).ToList ();
-            //var model = _products.Select(a => a.FactorItems.Select ( item => item.ProductId ).Count()).AsQueryable();
-
-            //var model = _products.Where(a => a.FactorItems.Max(b=>b.ProductId)).AsQueryable();
+          
             var model = _products.AsNoTracking ().Where ( product => products.Contains ( product.Id ) );
 
             return  model.Take(count).ProjectTo<ProductSectionViewModel>(Market.AutoMapperConfig.Configuration.MapperConfiguration).ToList ();
@@ -311,6 +269,22 @@ namespace WebMarket.ServiceLayer.EFServices
             {
                 return null;
             }
+        }
+
+        public ViewModel.User.Product.ProductPriceViewModel GetPrice ()
+        {
+            var maxPrice = _products.Max (a=>a.Price);
+            var minPrice = _products.Min(a => a.Price);
+
+            var model = new ViewModel.User.Product.ProductPriceViewModel
+                        {
+                            MaxPrice = maxPrice,
+                            MinPrice = minPrice   
+                        };
+            
+
+
+            return model;
         }
     }
 }

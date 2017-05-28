@@ -1865,6 +1865,9 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />
+    <Content Include="Views\Product\_Groups.cshtml" />
+    <Content Include="Views\Product\_Price.cshtml" />
+    <Content Include="Views\Product\_SingelProduct.cshtml" />
     <None Include="Views\ShoppingCart\Buy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

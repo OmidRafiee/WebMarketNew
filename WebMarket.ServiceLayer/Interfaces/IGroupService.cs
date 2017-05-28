@@ -11,10 +11,12 @@ namespace WebMarket.ServiceLayer.Interfaces
 {
     public interface IGroupService
     {
-       IList<Group> GetFirstLevelGroup();
+        IEnumerable<GroupViewModel> GetFirstLevelGroups();
+
        IEnumerable<Group> GetSecondLevelGroups();
        AddGroupStatus Add(Group group);
        IEnumerable<Group> GetAll();
+
 
        bool CheckExistName(string name);
     }

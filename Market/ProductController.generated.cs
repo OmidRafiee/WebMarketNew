@@ -80,6 +80,9 @@ namespace Market.Controllers
         {
             public readonly string ShowProduct = "ShowProduct";
             public readonly string SearchProduct = "SearchProduct";
+            public readonly string GetGroup = "GetGroup";
+            public readonly string GetPrice = "GetPrice";
+            public readonly string SingelProduct = "SingelProduct";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +90,9 @@ namespace Market.Controllers
         {
             public const string ShowProduct = "ShowProduct";
             public const string SearchProduct = "SearchProduct";
+            public const string GetGroup = "GetGroup";
+            public const string GetPrice = "GetPrice";
+            public const string SingelProduct = "SingelProduct";
         }
 
 
@@ -108,9 +114,15 @@ namespace Market.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _Groups = "_Groups";
+                public readonly string _Price = "_Price";
+                public readonly string _SingelProduct = "_SingelProduct";
                 public readonly string SearchProduct = "SearchProduct";
                 public readonly string ShowProduct = "ShowProduct";
             }
+            public readonly string _Groups = "~/Views/Product/_Groups.cshtml";
+            public readonly string _Price = "~/Views/Product/_Price.cshtml";
+            public readonly string _SingelProduct = "~/Views/Product/_SingelProduct.cshtml";
             public readonly string SearchProduct = "~/Views/Product/SearchProduct.cshtml";
             public readonly string ShowProduct = "~/Views/Product/ShowProduct.cshtml";
         }
@@ -141,6 +153,39 @@ namespace Market.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SearchProduct);
             SearchProductOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetGroupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetGroup()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetGroup);
+            GetGroupOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetPriceOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetPrice()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetPrice);
+            GetPriceOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SingelProductOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult SingelProduct()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SingelProduct);
+            SingelProductOverride(callInfo);
             return callInfo;
         }
 

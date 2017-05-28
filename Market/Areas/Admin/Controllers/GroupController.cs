@@ -30,14 +30,7 @@ namespace Market.Areas.Admin.Controllers
         [HttpPost]
         public virtual ActionResult GetJsonGroup()
         {
-            
-            //var list = _groupService.GetAll ().Select ( group => new
-            //                                                     {
-            //                                                             group.Id ,
-            //                                                             group.Name ,
-            //                                                             group.ParentId
-            //                                                     } );
-            var list = _groupService.GetAll ();
+           var list = _groupService.GetAll ();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
