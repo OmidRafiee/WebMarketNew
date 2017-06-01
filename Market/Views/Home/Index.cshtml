@@ -2,12 +2,11 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
+
 }
 
 <!-- = Slider Revolution = -->
-
-@{Html.RenderAction ( MVC.Home.SlideShow () ); }
+@{Html.RenderAction(MVC.Home.SlideShow()); }
 
 <!-- /slider revolution -->
 <!--  = Main container =  -->
@@ -47,7 +46,6 @@
     <!--  ==========  -->
     <!--  = Featured Items =  -->
     <!-- ========== -->
-
     @{Html.RenderAction(MVC.Home.MoreSellProducts()); }
 
 
@@ -55,14 +53,11 @@
 
 <!-- /container -->
 <!--  = New Products =  -->
-
-
 @{Html.RenderAction(MVC.Home.NewProducts()); }
 
 
- <!-- /new products -->
+<!-- /new products -->
 <!--  = Most Popular products =  -->
-
 @{Html.RenderAction(MVC.Home.PopularProducts()); }
 
 
@@ -181,56 +176,72 @@
 <!--  ==========  -->
 <!--  = Footer =  -->
 <!-- ========== -->
-
-
 @section Scripts{
-        <script>
-    $(function () {
-        $("a.btn.buy.btn-danger").click(function (e) {
-            e.preventDefault();
-            var productId = $(this).attr("product");
-            $.ajax({
-                url: '@Url.Action(MVC.ShoppingCart.AddToCart())',
-                        data: { id: productId, count: 1 },
-                        type: "Post",
-                        dataType: "Json",
-                        success: function (result) {
-                            if (result.Success) {
-                                //$("#cartContainer").html(result.Html);
-                                $("#cart").load('@Url.Action(MVC.Home.Index())' + "#cart");//reload div
-                                //location.reload();
-                               }
-                            eval(result.Script);
-                        },
-                        error: function () {
-                            alert("error");
-                        }
-                    });
-                });
-
-                $(".icon-remove-sign").click(function (e) {
-                       e.preventDefault();
-                        var id = $(this).attr("productid");
-                        var img = $(this);
-                        $.ajax({
-                            url: '@Url.Action(MVC.ShoppingCart.RemoveCart())',
-                            data: { Id: id },
-                            type: "Post",
-                            dataType: "Json",
-                            success: function (result) {
-                                if (result.Success) {
-                                    //img.parent().parent().hide();
-                                    $("#cartContainer").html(result.Html);
-                                  // location.reload();
+    <script>
+        $(function () {
+            $("a.btn.buy.btn-danger").click(function (e) {
+                e.preventDefault();
+                var productId = $(this).attr("product");
+                $.ajax({
+                    url: '@Url.Action( MVC.ShoppingCart.AddToCart () )',
+                    data: { id: productId, count: 1 },
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (result) {
+                        if (result.Success) {
+                            $.ajax({
+                                url: '@Url.Action( MVC.ShoppingCart.TotalPrice () )',
+                                type: "Post",
+                                cache:false,
+                                success: function(result) {
+                                    $(".cart-container").html(result);
+                                },
+                                error: function () {
+                                    alert("error");
                                 }
-                                eval(result.Script);
-                            },
-                            error: function () {
-                                alert("خطا!");
-                            }
-                        });
-                    });
-
+                            });
+                        }
+                        eval(result.Script);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
                 });
-        </script>
-    }
+            });
+
+            $(".icon-remove-sign").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr("productid");
+                var img = $(this);
+                $.ajax({
+                    url: '@Url.Action( MVC.ShoppingCart.RemoveCart () )',
+                    data: { Id: id },
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (result) {
+                        if (result.Success) {
+                            $.ajax({
+                                url: '@Url.Action( MVC.ShoppingCart.TotalPrice () )',
+                                type: "Post",
+                                cache: false,
+                                success: function (result) {
+                                    $(".cart-container").html(result);
+                                },
+                                error: function () {
+                                    alert("error");
+                                }
+                            });
+                        }
+                        eval(result.Script);
+                    },
+                    error:
+
+                function () {
+                    alert("خطا!");
+                }
+                });
+            });
+
+        });
+    </script>
+}
